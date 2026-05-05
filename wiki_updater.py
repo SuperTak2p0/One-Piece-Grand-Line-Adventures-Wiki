@@ -151,7 +151,7 @@ FEATURE_PAGE_TEMPLATE = """\
     <header>
         <div class="header-inner">
             <a class="logo" href="/">
-                <img src="/images/logo.jpeg" alt="Logo">
+                <img src="https://github.com/SuperTak2p0/One-Piece-Grand-Line-Adventures-Wiki/blob/main/images/logo.jpeg?raw=true" alt="Logo">
                 <span>
                     <div class="logo-title">Grand Line Adventures</div>
                     <div class="logo-sub">Minecraft Mod Wiki</div>
