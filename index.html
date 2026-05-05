@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Piece: Grand Line Adventures Wiki</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>One Piece: Grand Line Adventures Wiki</title>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -16,6 +17,43 @@
             background-color: #0d1117;
             color: #c9d1d9;
             min-height: 100vh;
+        }
+
+        /* Feature detail link */
+        .card a.feature-link {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-size: 0.78rem;
+            color: #c8960c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .card a.feature-link:hover {
+            text-decoration: underline;
+        }
+
+        .card.released {
+            opacity: 1;
+            border-color: #238636;
+        }
+
+        .card.released:hover {
+            border-color: #2ea043;
+            transform: translateY(-2px);
+        }
+
+        .released-tag {
+            display: inline-block;
+            background: rgba(35, 134, 54, 0.2);
+            border: 1px solid rgba(46, 160, 67, 0.4);
+            color: #2ea043;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
         }
 
         /* Header */
@@ -46,7 +84,11 @@
         }
 
         .logo-icon {
-            font-size: 2rem;
+            width: 52px;
+            height: 52px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid rgba(200, 150, 12, 0.3);
         }
 
         .logo-text {
@@ -489,209 +531,194 @@
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="header-inner">
-            <a class="logo" href="#">
-                <span class="logo-icon">⚓</span>
-                <span class="logo-text">
-                    <span class="logo-title">Grand Line Adventures</span>
-                    <span class="logo-sub">Minecraft Mod Wiki</span>
-                </span>
-            </a>
-            <nav>
-                <a href="#getting-started">Getting Started</a>
-                <a href="#features">Planned Features</a>
-                <a href="#links">Links</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="hero">
-        <div class="hero-content">
-            <span class="hero-badge">🏴‍☠️ Minecraft Forge Mod</span>
-            <h1>One Piece: Grand Line Adventures</h1>
-            <p>
+<header>
+<div class="header-inner">
+<a class="logo" href="#">
+<img alt="One Piece Grand Line Adventures Logo" class="logo-icon" src="/images/logo.jpeg"/>
+<span class="logo-text">
+<span class="logo-title">Grand Line Adventures</span>
+<span class="logo-sub">Minecraft Mod Wiki</span>
+</span>
+</a>
+<nav>
+<a href="#getting-started">Getting Started</a>
+<a href="#features">Planned Features</a>
+<a href="#links">Links</a>
+</nav>
+</div>
+</header>
+<div class="hero">
+<div class="hero-content">
+<span class="hero-badge">🏴‍☠️ Minecraft Forge Mod</span>
+<h1>One Piece: Grand Line Adventures</h1>
+<p>
                 A Forge mod bringing the world of One Piece into Minecraft.
                 This wiki will be updated as new features are added to the mod.
             </p>
-            <div class="hero-buttons">
-                <a class="btn btn-primary" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
+<div class="hero-buttons">
+<a class="btn btn-primary" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
                     ⬇ Download on CurseForge
                 </a>
-                <a class="btn btn-secondary" href="#getting-started">
+<a class="btn btn-secondary" href="#getting-started">
                     📖 Getting Started
                 </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <main>
-
-            <!-- Planned Features -->
-            <section id="features">
-                <h2 class="section-title">⚔️ Planned Features</h2>
-
-                <div class="coming-soon-banner">
-                    <span>🚧</span>
-                    <span>These features are <strong>planned and in development</strong>. The mod is actively being worked on — this page will be updated as features are released.</span>
-                </div>
-
-                <div class="card-grid">
-                    <div class="card">
-                        <div class="card-icon">🍎</div>
-                        <h3>Devil Fruits <span class="coming-soon-tag">Coming Soon</span></h3>
-                        <p>Discover and consume powerful Devil Fruits granting extraordinary abilities at the cost of swimming.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">⛵</div>
-                        <h3>Custom Ships <span class="coming-soon-tag">Coming Soon</span></h3>
-                        <p>Build and sail your own ship across vast oceans. Recruit a crew and explore the world.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🗡️</div>
-                        <h3>Haki System <span class="coming-soon-tag">Coming Soon</span></h3>
-                        <p>Train your Haki abilities — Observation, Armament, and Conqueror's — to overpower any foe.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🏝️</div>
-                        <h3>New Biomes <span class="coming-soon-tag">Coming Soon</span></h3>
-                        <p>Explore Grand Line islands, sky islands, and underwater kingdoms with unique mobs and loot.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🤝</div>
-                        <h3>Factions <span class="coming-soon-tag">Coming Soon</span></h3>
-                        <p>Align with the Marines, join a Pirate Crew, or work for the World Government — your choice.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">💰</div>
-                        <h3>Bounty System <span class="coming-soon-tag">Coming Soon</span></h3>
-                        <p>Your bounty rises with every victory. Higher bounties attract stronger Marine bounty hunters.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Getting Started -->
-            <section id="getting-started">
-                <h2 class="section-title">🚀 Getting Started</h2>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-num">1</div>
-                        <div class="step-content">
-                            <h4>Install Minecraft Forge</h4>
-                            <p>Download and install <code>Forge</code> for the Minecraft version required by the mod. You can find the correct version listed on the CurseForge page.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">2</div>
-                        <div class="step-content">
-                            <h4>Download the Mod</h4>
-                            <p>Grab the latest release from <code>CurseForge</code> and drop the <code>.jar</code> file into your <code>mods/</code> folder.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">3</div>
-                        <div class="step-content">
-                            <h4>Launch Minecraft</h4>
-                            <p>Open the Minecraft Launcher, select your <code>Forge</code> profile, and hit <code>Play</code>. The mod will load automatically.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">4</div>
-                        <div class="step-content">
-                            <h4>Create or Join a World</h4>
-                            <p>Start a new world or connect to a server with the mod installed. Your One Piece adventure begins!</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <!-- Sidebar -->
-        <aside id="links">
-
-            <div class="widget">
-                <div class="widget-title">📊 Mod Info</div>
-                <div class="stat-row">
-                    <span class="stat-label">Platform</span>
-                    <span class="stat-value">CurseForge</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">Mod Loader</span>
-                    <span class="stat-value">Forge</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">Game</span>
-                    <span class="stat-value">Minecraft</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">Wiki Status</span>
-                    <span class="stat-value" style="color:#38d39f;">🟢 Active</span>
-                </div>
-            </div>
-
-            <div class="widget">
-                <div class="widget-title">🔗 External Links</div>
-                <a class="external-link" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
+</div>
+</div>
+</div>
+<div class="container">
+<main>
+<!-- Planned Features -->
+<section id="features">
+<h2 class="section-title">⚔️ Planned Features</h2>
+<div class="coming-soon-banner">
+<span>🚧</span>
+<span>These features are <strong>planned and in development</strong>. The mod is actively being worked on — this page will be updated as features are released.</span>
+</div>
+<div class="card-grid">
+<div class="card card released">
+<div class="card-icon">🍎</div>
+<h3>Devil Fruits  <span class="released-tag">Released</span></h3>
+<p>Discover and consume powerful Devil Fruits granting extraordinary abilities at the cost of swimming.</p>
+<a class="feature-link" href="/devil-fruits.html">→ View full page</a></div>
+<div class="card">
+<div class="card-icon">⛵</div>
+<h3>Custom Ships <span class="coming-soon-tag">Coming Soon</span></h3>
+<p>Build and sail your own ship across vast oceans. Recruit a crew and explore the world.</p>
+</div>
+<div class="card">
+<div class="card-icon">🗡️</div>
+<h3>Haki System <span class="coming-soon-tag">Coming Soon</span></h3>
+<p>Train your Haki abilities — Observation, Armament, and Conqueror's — to overpower any foe.</p>
+</div>
+<div class="card">
+<div class="card-icon">🏝️</div>
+<h3>New Biomes <span class="coming-soon-tag">Coming Soon</span></h3>
+<p>Explore Grand Line islands, sky islands, and underwater kingdoms with unique mobs and loot.</p>
+</div>
+<div class="card">
+<div class="card-icon">🤝</div>
+<h3>Factions <span class="coming-soon-tag">Coming Soon</span></h3>
+<p>Align with the Marines, join a Pirate Crew, or work for the World Government — your choice.</p>
+</div>
+<div class="card">
+<div class="card-icon">💰</div>
+<h3>Bounty System <span class="coming-soon-tag">Coming Soon</span></h3>
+<p>Your bounty rises with every victory. Higher bounties attract stronger Marine bounty hunters.</p>
+</div>
+</div>
+</section>
+<!-- Getting Started -->
+<section id="getting-started">
+<h2 class="section-title">🚀 Getting Started</h2>
+<div class="steps">
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-content">
+<h4>Install Minecraft Forge</h4>
+<p>Download and install <code>Forge</code> for the Minecraft version required by the mod. You can find the correct version listed on the CurseForge page.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-content">
+<h4>Download the Mod</h4>
+<p>Grab the latest release from <code>CurseForge</code> and drop the <code>.jar</code> file into your <code>mods/</code> folder.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-content">
+<h4>Launch Minecraft</h4>
+<p>Open the Minecraft Launcher, select your <code>Forge</code> profile, and hit <code>Play</code>. The mod will load automatically.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">4</div>
+<div class="step-content">
+<h4>Create or Join a World</h4>
+<p>Start a new world or connect to a server with the mod installed. Your One Piece adventure begins!</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Sidebar -->
+<aside id="links">
+<div class="widget">
+<div class="widget-title">📊 Mod Info</div>
+<div class="stat-row">
+<span class="stat-label">Platform</span>
+<span class="stat-value">CurseForge</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Mod Loader</span>
+<span class="stat-value">Forge</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Game</span>
+<span class="stat-value">Minecraft</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Wiki Status</span>
+<span class="stat-value" style="color:#38d39f;">🟢 Active</span>
+</div>
+</div>
+<div class="widget">
+<div class="widget-title">🔗 External Links</div>
+<a class="external-link" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
                     ⬇️ CurseForge Page
                 </a>
-                <a class="external-link" href="https://minecraft.net" target="_blank">
+<a class="external-link" href="https://minecraft.net" target="_blank">
                     🎮 Minecraft Official
                 </a>
-                <a class="external-link" href="https://files.minecraftforge.net" target="_blank">
+<a class="external-link" href="https://files.minecraftforge.net" target="_blank">
                     🔧 Download Forge
                 </a>
-            </div>
-
-            <div class="widget">
-                <div class="widget-title">📚 Wiki Pages</div>
-                <ul>
-                    <li><a href="#getting-started">🚀 Getting Started</a></li>
-                    <li>
-                        <a href="#features">
+</div>
+<div class="widget">
+<div class="widget-title">📚 Wiki Pages</div>
+<ul>
+<li><a href="#getting-started">🚀 Getting Started</a></li>
+<li>
+<a href="/devil-fruits.html">
                             🍎 Devil Fruits
-                            <span class="wiki-tag-soon">Soon</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#features">
+                            
+</a>
+</li>
+<li>
+<a href="#features">
                             🗡️ Haki Training
                             <span class="wiki-tag-soon">Soon</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#features">
+</a>
+</li>
+<li>
+<a href="#features">
                             ⛵ Ships &amp; Sailing
                             <span class="wiki-tag-soon">Soon</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#features">
+</a>
+</li>
+<li>
+<a href="#features">
                             🏝️ Islands &amp; Biomes
                             <span class="wiki-tag-soon">Soon</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#features">
+</a>
+</li>
+<li>
+<a href="#features">
                             💰 Bounty System
                             <span class="wiki-tag-soon">Soon</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </aside>
-    </div>
-
-    <footer>
-        <p>
-            One Piece: Grand Line Adventures Wiki &mdash;
+</a>
+</li>
+</ul>
+</div>
+</aside>
+</div>
+<footer>
+<p>
+            One Piece: Grand Line Adventures Wiki —
             Community resource for the <a href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">Minecraft Forge mod</a>.
-            One Piece is &copy; Eiichiro Oda / Shueisha. Not affiliated with Mojang.
+            One Piece is © Eiichiro Oda / Shueisha. Not affiliated with Mojang.
         </p>
-    </footer>
-
+</footer>
 </body>
 </html>
