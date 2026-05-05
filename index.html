@@ -195,7 +195,6 @@
             align-items: start;
         }
 
-        /* Main content */
         main {}
 
         .section-title {
@@ -223,12 +222,8 @@
             border: 1px solid #21262d;
             border-radius: 10px;
             padding: 1.25rem;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-
-        .card:hover {
-            border-color: #c8960c;
-            transform: translateY(-2px);
+            position: relative;
+            opacity: 0.75;
         }
 
         .card-icon {
@@ -241,12 +236,51 @@
             font-weight: 700;
             color: #e6edf3;
             margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .card p {
             font-size: 0.82rem;
             color: #8b949e;
             line-height: 1.5;
+        }
+
+        .coming-soon-tag {
+            display: inline-block;
+            background: rgba(139, 100, 20, 0.2);
+            border: 1px solid rgba(200, 150, 12, 0.3);
+            color: #8b6914;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+        }
+
+        /* Coming Soon banner */
+        .coming-soon-banner {
+            background: rgba(139, 100, 20, 0.08);
+            border: 1px solid rgba(200, 150, 12, 0.25);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            color: #8b949e;
+        }
+
+        .coming-soon-banner span:first-child {
+            font-size: 1.2rem;
+        }
+
+        .coming-soon-banner strong {
+            color: #c8960c;
         }
 
         /* Getting started */
@@ -312,61 +346,6 @@
             font-family: 'Courier New', monospace;
         }
 
-        /* Devil fruits table */
-        .table-wrap {
-            background: #161b22;
-            border: 1px solid #21262d;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        thead {
-            background: #1c2128;
-        }
-
-        th {
-            text-align: left;
-            padding: 0.8rem 1.2rem;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.07em;
-            color: #8b949e;
-            border-bottom: 1px solid #30363d;
-        }
-
-        td {
-            padding: 0.8rem 1.2rem;
-            font-size: 0.875rem;
-            border-bottom: 1px solid #21262d;
-            color: #c9d1d9;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background: #1c2128;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .badge-paramecia { background: rgba(88,166,255,0.15); color: #58a6ff; }
-        .badge-zoan     { background: rgba(56,211,159,0.15); color: #38d39f; }
-        .badge-logia    { background: rgba(255,165,0,0.15);  color: #ffa500; }
-
         /* Sidebar */
         aside {}
 
@@ -406,12 +385,24 @@
             font-size: 0.875rem;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 0.5rem;
             transition: color 0.2s;
         }
 
         .widget ul li a:hover {
             color: #c8960c;
+        }
+
+        .wiki-tag-soon {
+            font-size: 0.65rem;
+            background: rgba(139,100,20,0.2);
+            border: 1px solid rgba(200,150,12,0.25);
+            color: #8b6914;
+            padding: 0.1rem 0.4rem;
+            border-radius: 10px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
         .stat-row {
@@ -510,8 +501,7 @@
             </a>
             <nav>
                 <a href="#getting-started">Getting Started</a>
-                <a href="#features">Features</a>
-                <a href="#devil-fruits">Devil Fruits</a>
+                <a href="#features">Planned Features</a>
                 <a href="#links">Links</a>
             </nav>
         </div>
@@ -519,18 +509,18 @@
 
     <div class="hero">
         <div class="hero-content">
-            <span class="hero-badge">🏴‍☠️ Minecraft Mod</span>
+            <span class="hero-badge">🏴‍☠️ Minecraft Forge Mod</span>
             <h1>One Piece: Grand Line Adventures</h1>
             <p>
-                Sail the seas, eat Devil Fruits, and forge your pirate legend — all inside Minecraft.
-                This wiki covers everything you need to know about the mod.
+                A Forge mod bringing the world of One Piece into Minecraft.
+                This wiki will be updated as new features are added to the mod.
             </p>
             <div class="hero-buttons">
                 <a class="btn btn-primary" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
                     ⬇ Download on CurseForge
                 </a>
                 <a class="btn btn-secondary" href="#getting-started">
-                    📖 Read the Wiki
+                    📖 Getting Started
                 </a>
             </div>
         </div>
@@ -539,38 +529,44 @@
     <div class="container">
         <main>
 
-            <!-- Features -->
+            <!-- Planned Features -->
             <section id="features">
-                <h2 class="section-title">⚔️ Features</h2>
+                <h2 class="section-title">⚔️ Planned Features</h2>
+
+                <div class="coming-soon-banner">
+                    <span>🚧</span>
+                    <span>These features are <strong>planned and in development</strong>. The mod is actively being worked on — this page will be updated as features are released.</span>
+                </div>
+
                 <div class="card-grid">
                     <div class="card">
                         <div class="card-icon">🍎</div>
-                        <h3>Devil Fruits</h3>
+                        <h3>Devil Fruits <span class="coming-soon-tag">Coming Soon</span></h3>
                         <p>Discover and consume powerful Devil Fruits granting extraordinary abilities at the cost of swimming.</p>
                     </div>
                     <div class="card">
                         <div class="card-icon">⛵</div>
-                        <h3>Custom Ships</h3>
+                        <h3>Custom Ships <span class="coming-soon-tag">Coming Soon</span></h3>
                         <p>Build and sail your own ship across vast oceans. Recruit a crew and explore the world.</p>
                     </div>
                     <div class="card">
                         <div class="card-icon">🗡️</div>
-                        <h3>Haki System</h3>
+                        <h3>Haki System <span class="coming-soon-tag">Coming Soon</span></h3>
                         <p>Train your Haki abilities — Observation, Armament, and Conqueror's — to overpower any foe.</p>
                     </div>
                     <div class="card">
                         <div class="card-icon">🏝️</div>
-                        <h3>New Biomes</h3>
+                        <h3>New Biomes <span class="coming-soon-tag">Coming Soon</span></h3>
                         <p>Explore Grand Line islands, sky islands, and underwater kingdoms with unique mobs and loot.</p>
                     </div>
                     <div class="card">
                         <div class="card-icon">🤝</div>
-                        <h3>Factions</h3>
+                        <h3>Factions <span class="coming-soon-tag">Coming Soon</span></h3>
                         <p>Align with the Marines, join a Pirate Crew, or work for the World Government — your choice.</p>
                     </div>
                     <div class="card">
                         <div class="card-icon">💰</div>
-                        <h3>Bounty System</h3>
+                        <h3>Bounty System <span class="coming-soon-tag">Coming Soon</span></h3>
                         <p>Your bounty rises with every victory. Higher bounties attract stronger Marine bounty hunters.</p>
                     </div>
                 </div>
@@ -583,8 +579,8 @@
                     <div class="step">
                         <div class="step-num">1</div>
                         <div class="step-content">
-                            <h4>Install a Mod Loader</h4>
-                            <p>Download and install <code>Forge</code> or <code>Fabric</code> for your Minecraft version. The mod page on CurseForge lists the required version.</p>
+                            <h4>Install Minecraft Forge</h4>
+                            <p>Download and install <code>Forge</code> for the Minecraft version required by the mod. You can find the correct version listed on the CurseForge page.</p>
                         </div>
                     </div>
                     <div class="step">
@@ -598,78 +594,16 @@
                         <div class="step-num">3</div>
                         <div class="step-content">
                             <h4>Launch Minecraft</h4>
-                            <p>Open the Minecraft Launcher, select the Forge/Fabric profile, and hit <code>Play</code>. The mod will load automatically.</p>
+                            <p>Open the Minecraft Launcher, select your <code>Forge</code> profile, and hit <code>Play</code>. The mod will load automatically.</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-num">4</div>
                         <div class="step-content">
                             <h4>Create or Join a World</h4>
-                            <p>Start a new world or connect to a server with the mod installed. You will spawn near the ocean — your adventure begins!</p>
+                            <p>Start a new world or connect to a server with the mod installed. Your One Piece adventure begins!</p>
                         </div>
                     </div>
-                    <div class="step">
-                        <div class="step-num">5</div>
-                        <div class="step-content">
-                            <h4>Find a Devil Fruit</h4>
-                            <p>Search chests in dungeons and villages for Devil Fruits. Right-click to consume one and unlock your powers.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Devil Fruits Table -->
-            <section id="devil-fruits">
-                <h2 class="section-title">🍎 Devil Fruit List</h2>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Fruit Name</th>
-                                <th>Type</th>
-                                <th>Ability</th>
-                                <th>Rarity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Gomu Gomu no Mi</td>
-                                <td><span class="badge badge-paramecia">Paramecia</span></td>
-                                <td>Rubber body — immune to blunt attacks and lightning</td>
-                                <td>⭐⭐⭐</td>
-                            </tr>
-                            <tr>
-                                <td>Mera Mera no Mi</td>
-                                <td><span class="badge badge-logia">Logia</span></td>
-                                <td>Control and transform into fire, dealing burn damage</td>
-                                <td>⭐⭐⭐⭐⭐</td>
-                            </tr>
-                            <tr>
-                                <td>Hie Hie no Mi</td>
-                                <td><span class="badge badge-logia">Logia</span></td>
-                                <td>Control and transform into ice, freezing enemies</td>
-                                <td>⭐⭐⭐⭐⭐</td>
-                            </tr>
-                            <tr>
-                                <td>Ope Ope no Mi</td>
-                                <td><span class="badge badge-paramecia">Paramecia</span></td>
-                                <td>Create a room where you control space and matter</td>
-                                <td>⭐⭐⭐⭐</td>
-                            </tr>
-                            <tr>
-                                <td>Zoan Neko Neko no Mi</td>
-                                <td><span class="badge badge-zoan">Zoan</span></td>
-                                <td>Transform into a leopard, gaining speed and power</td>
-                                <td>⭐⭐⭐</td>
-                            </tr>
-                            <tr>
-                                <td>Yami Yami no Mi</td>
-                                <td><span class="badge badge-logia">Logia</span></td>
-                                <td>Control darkness and nullify Devil Fruit powers</td>
-                                <td>⭐⭐⭐⭐⭐</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </section>
 
@@ -685,12 +619,12 @@
                     <span class="stat-value">CurseForge</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">Game</span>
-                    <span class="stat-value">Minecraft</span>
+                    <span class="stat-label">Mod Loader</span>
+                    <span class="stat-value">Forge</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">Category</span>
-                    <span class="stat-value">Mods</span>
+                    <span class="stat-label">Game</span>
+                    <span class="stat-value">Minecraft</span>
                 </div>
                 <div class="stat-row">
                     <span class="stat-label">Wiki Status</span>
@@ -709,22 +643,42 @@
                 <a class="external-link" href="https://files.minecraftforge.net" target="_blank">
                     🔧 Download Forge
                 </a>
-                <a class="external-link" href="https://fabricmc.net" target="_blank">
-                    🧵 Download Fabric
-                </a>
             </div>
 
             <div class="widget">
                 <div class="widget-title">📚 Wiki Pages</div>
                 <ul>
                     <li><a href="#getting-started">🚀 Getting Started</a></li>
-                    <li><a href="#features">⚔️ Features Overview</a></li>
-                    <li><a href="#devil-fruits">🍎 Devil Fruits</a></li>
-                    <li><a href="#">🤝 Factions Guide</a></li>
-                    <li><a href="#">🗡️ Haki Training</a></li>
-                    <li><a href="#">⛵ Ships & Sailing</a></li>
-                    <li><a href="#">🏝️ Islands & Biomes</a></li>
-                    <li><a href="#">💰 Bounty System</a></li>
+                    <li>
+                        <a href="#features">
+                            🍎 Devil Fruits
+                            <span class="wiki-tag-soon">Soon</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#features">
+                            🗡️ Haki Training
+                            <span class="wiki-tag-soon">Soon</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#features">
+                            ⛵ Ships &amp; Sailing
+                            <span class="wiki-tag-soon">Soon</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#features">
+                            🏝️ Islands &amp; Biomes
+                            <span class="wiki-tag-soon">Soon</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#features">
+                            💰 Bounty System
+                            <span class="wiki-tag-soon">Soon</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -734,7 +688,7 @@
     <footer>
         <p>
             One Piece: Grand Line Adventures Wiki &mdash;
-            Community resource for the <a href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">Minecraft mod</a>.
+            Community resource for the <a href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">Minecraft Forge mod</a>.
             One Piece is &copy; Eiichiro Oda / Shueisha. Not affiliated with Mojang.
         </p>
     </footer>
