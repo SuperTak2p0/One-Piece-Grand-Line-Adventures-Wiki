@@ -350,9 +350,6 @@ class WikiUpdater:
 
 
 if __name__ == "__main__":
-    updater = WikiUpdater()
-    updater.release_feature(
-        feature_name="Devil Fruits",
-        description="Discover and consume powerful Devil Fruits granting extraordinary abilities at the cost of swimming.",
-        icon="🍎"
-    )
+    print("WikiUpdater ready. Example usage:")
+    print('  updater = WikiUpdater()')
+    print('  updater.release_feature(feature_name="Devil Fruits", description="...", icon="🍎")')
