@@ -1,10 +1,743 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello World Seite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Piece: Grand Line Adventures Wiki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a0a00 0%, #2d1200 40%, #1a0a00 100%);
+            border-bottom: 3px solid #c8960c;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(200, 150, 12, 0.3);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #c8960c;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            color: #8b6914;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        nav a {
+            color: #c9d1d9;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        nav a:hover {
+            background: rgba(200, 150, 12, 0.15);
+            color: #c8960c;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(180deg, #1a0a00 0%, #0d1117 100%);
+            border-bottom: 1px solid #21262d;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(200, 150, 12, 0.12) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(200, 150, 12, 0.15);
+            border: 1px solid rgba(200, 150, 12, 0.4);
+            color: #c8960c;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #f0c040;
+            text-shadow: 0 0 30px rgba(240, 192, 64, 0.3);
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #8b949e;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #c8960c;
+            color: #0d1117;
+        }
+
+        .btn-primary:hover {
+            background: #e0a80e;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(200, 150, 12, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+        }
+
+        .btn-secondary:hover {
+            background: #21262d;
+            border-color: #c8960c;
+            color: #c8960c;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Main content */
+        main {}
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e6edf3;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #c8960c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Feature cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 1.25rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            border-color: #c8960c;
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #e6edf3;
+            margin-bottom: 0.4rem;
+        }
+
+        .card p {
+            font-size: 0.82rem;
+            color: #8b949e;
+            line-height: 1.5;
+        }
+
+        /* Getting started */
+        .steps {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1rem;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #21262d;
+            align-items: flex-start;
+            transition: background 0.2s;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step:hover {
+            background: #1c2128;
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background: #c8960c;
+            color: #0d1117;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #e6edf3;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content p {
+            color: #8b949e;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .step-content code {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #c8960c;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Devil fruits table */
+        .table-wrap {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #1c2128;
+        }
+
+        th {
+            text-align: left;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: #8b949e;
+            border-bottom: 1px solid #30363d;
+        }
+
+        td {
+            padding: 0.8rem 1.2rem;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #21262d;
+            color: #c9d1d9;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: #1c2128;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-paramecia { background: rgba(88,166,255,0.15); color: #58a6ff; }
+        .badge-zoan     { background: rgba(56,211,159,0.15); color: #38d39f; }
+        .badge-logia    { background: rgba(255,165,0,0.15);  color: #ffa500; }
+
+        /* Sidebar */
+        aside {}
+
+        .widget {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .widget-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #c8960c;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.9rem;
+        }
+
+        .widget ul {
+            list-style: none;
+        }
+
+        .widget ul li {
+            padding: 0.35rem 0;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+
+        .widget ul li a {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .widget ul li a:hover {
+            color: #c8960c;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #21262d;
+            font-size: 0.85rem;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #8b949e;
+        }
+
+        .stat-value {
+            color: #e6edf3;
+            font-weight: 600;
+        }
+
+        .external-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #c9d1d9;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        .external-link:last-child {
+            margin-bottom: 0;
+        }
+
+        .external-link:hover {
+            border-color: #c8960c;
+            color: #c8960c;
+            background: rgba(200, 150, 12, 0.05);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #21262d;
+            padding: 2rem;
+            text-align: center;
+            color: #484f58;
+            font-size: 0.82rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #8b949e;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #c8960c;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
+
+    <header>
+        <div class="header-inner">
+            <a class="logo" href="#">
+                <span class="logo-icon">⚓</span>
+                <span class="logo-text">
+                    <span class="logo-title">Grand Line Adventures</span>
+                    <span class="logo-sub">Minecraft Mod Wiki</span>
+                </span>
+            </a>
+            <nav>
+                <a href="#getting-started">Getting Started</a>
+                <a href="#features">Features</a>
+                <a href="#devil-fruits">Devil Fruits</a>
+                <a href="#links">Links</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">🏴‍☠️ Minecraft Mod</span>
+            <h1>One Piece: Grand Line Adventures</h1>
+            <p>
+                Sail the seas, eat Devil Fruits, and forge your pirate legend — all inside Minecraft.
+                This wiki covers everything you need to know about the mod.
+            </p>
+            <div class="hero-buttons">
+                <a class="btn btn-primary" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
+                    ⬇ Download on CurseForge
+                </a>
+                <a class="btn btn-secondary" href="#getting-started">
+                    📖 Read the Wiki
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+
+            <!-- Features -->
+            <section id="features">
+                <h2 class="section-title">⚔️ Features</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🍎</div>
+                        <h3>Devil Fruits</h3>
+                        <p>Discover and consume powerful Devil Fruits granting extraordinary abilities at the cost of swimming.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⛵</div>
+                        <h3>Custom Ships</h3>
+                        <p>Build and sail your own ship across vast oceans. Recruit a crew and explore the world.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🗡️</div>
+                        <h3>Haki System</h3>
+                        <p>Train your Haki abilities — Observation, Armament, and Conqueror's — to overpower any foe.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏝️</div>
+                        <h3>New Biomes</h3>
+                        <p>Explore Grand Line islands, sky islands, and underwater kingdoms with unique mobs and loot.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🤝</div>
+                        <h3>Factions</h3>
+                        <p>Align with the Marines, join a Pirate Crew, or work for the World Government — your choice.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💰</div>
+                        <h3>Bounty System</h3>
+                        <p>Your bounty rises with every victory. Higher bounties attract stronger Marine bounty hunters.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Getting Started -->
+            <section id="getting-started">
+                <h2 class="section-title">🚀 Getting Started</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Install a Mod Loader</h4>
+                            <p>Download and install <code>Forge</code> or <code>Fabric</code> for your Minecraft version. The mod page on CurseForge lists the required version.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Download the Mod</h4>
+                            <p>Grab the latest release from <code>CurseForge</code> and drop the <code>.jar</code> file into your <code>mods/</code> folder.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>Launch Minecraft</h4>
+                            <p>Open the Minecraft Launcher, select the Forge/Fabric profile, and hit <code>Play</code>. The mod will load automatically.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">4</div>
+                        <div class="step-content">
+                            <h4>Create or Join a World</h4>
+                            <p>Start a new world or connect to a server with the mod installed. You will spawn near the ocean — your adventure begins!</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">5</div>
+                        <div class="step-content">
+                            <h4>Find a Devil Fruit</h4>
+                            <p>Search chests in dungeons and villages for Devil Fruits. Right-click to consume one and unlock your powers.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Devil Fruits Table -->
+            <section id="devil-fruits">
+                <h2 class="section-title">🍎 Devil Fruit List</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fruit Name</th>
+                                <th>Type</th>
+                                <th>Ability</th>
+                                <th>Rarity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gomu Gomu no Mi</td>
+                                <td><span class="badge badge-paramecia">Paramecia</span></td>
+                                <td>Rubber body — immune to blunt attacks and lightning</td>
+                                <td>⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td>Mera Mera no Mi</td>
+                                <td><span class="badge badge-logia">Logia</span></td>
+                                <td>Control and transform into fire, dealing burn damage</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td>Hie Hie no Mi</td>
+                                <td><span class="badge badge-logia">Logia</span></td>
+                                <td>Control and transform into ice, freezing enemies</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td>Ope Ope no Mi</td>
+                                <td><span class="badge badge-paramecia">Paramecia</span></td>
+                                <td>Create a room where you control space and matter</td>
+                                <td>⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td>Zoan Neko Neko no Mi</td>
+                                <td><span class="badge badge-zoan">Zoan</span></td>
+                                <td>Transform into a leopard, gaining speed and power</td>
+                                <td>⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td>Yami Yami no Mi</td>
+                                <td><span class="badge badge-logia">Logia</span></td>
+                                <td>Control darkness and nullify Devil Fruit powers</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Sidebar -->
+        <aside id="links">
+
+            <div class="widget">
+                <div class="widget-title">📊 Mod Info</div>
+                <div class="stat-row">
+                    <span class="stat-label">Platform</span>
+                    <span class="stat-value">CurseForge</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Game</span>
+                    <span class="stat-value">Minecraft</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Category</span>
+                    <span class="stat-value">Mods</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Wiki Status</span>
+                    <span class="stat-value" style="color:#38d39f;">🟢 Active</span>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">🔗 External Links</div>
+                <a class="external-link" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
+                    ⬇️ CurseForge Page
+                </a>
+                <a class="external-link" href="https://minecraft.net" target="_blank">
+                    🎮 Minecraft Official
+                </a>
+                <a class="external-link" href="https://files.minecraftforge.net" target="_blank">
+                    🔧 Download Forge
+                </a>
+                <a class="external-link" href="https://fabricmc.net" target="_blank">
+                    🧵 Download Fabric
+                </a>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">📚 Wiki Pages</div>
+                <ul>
+                    <li><a href="#getting-started">🚀 Getting Started</a></li>
+                    <li><a href="#features">⚔️ Features Overview</a></li>
+                    <li><a href="#devil-fruits">🍎 Devil Fruits</a></li>
+                    <li><a href="#">🤝 Factions Guide</a></li>
+                    <li><a href="#">🗡️ Haki Training</a></li>
+                    <li><a href="#">⛵ Ships & Sailing</a></li>
+                    <li><a href="#">🏝️ Islands & Biomes</a></li>
+                    <li><a href="#">💰 Bounty System</a></li>
+                </ul>
+            </div>
+
+        </aside>
+    </div>
+
+    <footer>
+        <p>
+            One Piece: Grand Line Adventures Wiki &mdash;
+            Community resource for the <a href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">Minecraft mod</a>.
+            One Piece is &copy; Eiichiro Oda / Shueisha. Not affiliated with Mojang.
+        </p>
+    </footer>
+
 </body>
 </html>
