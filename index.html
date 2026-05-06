@@ -472,32 +472,14 @@
 
         /* CurseForge inline text link */
         .cf-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3em;
             color: #f16436;
             text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(241, 100, 54, 0.35);
-            padding-bottom: 1px;
-            transition: color 0.2s, border-color 0.2s;
+            font-weight: 800;
+            transition: color 0.2s;
         }
 
         .cf-link:hover {
             color: #ff7a50;
-            border-bottom-color: rgba(241, 100, 54, 0.7);
-        }
-
-        .cf-link::before {
-            content: '';
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f16436' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            flex-shrink: 0;
         }
 
         /* CurseForge branded sidebar button */
