@@ -347,9 +347,3 @@ class WikiUpdater:
         slug = re.sub(r"[^a-z0-9]+", "-", slug)
         slug = slug.strip("-")
         return slug
-
-
-if __name__ == "__main__":
-    print("WikiUpdater ready. Example usage:")
-    print('  updater = WikiUpdater()')
-    print('  updater.release_feature(feature_name="Devil Fruits", description="...", icon="🍎")')
