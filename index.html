@@ -470,6 +470,111 @@
             font-weight: 600;
         }
 
+        /* CurseForge inline text link */
+        .cf-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3em;
+            color: #f16436;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(241, 100, 54, 0.35);
+            padding-bottom: 1px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .cf-link:hover {
+            color: #ff7a50;
+            border-bottom-color: rgba(241, 100, 54, 0.7);
+        }
+
+        .cf-link::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f16436' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        /* CurseForge branded sidebar button */
+        .cf-button {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, #1e0e08 0%, #2a1205 100%);
+            border: 1px solid rgba(241, 100, 54, 0.45);
+            border-radius: 8px;
+            text-decoration: none;
+            color: #f5c5b0;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        .cf-button:last-child {
+            margin-bottom: 0;
+        }
+
+        .cf-button:hover {
+            background: linear-gradient(135deg, #2a1205 0%, #3a1a08 100%);
+            border-color: #f16436;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(241, 100, 54, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .cf-button-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cf-button-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .cf-button-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .cf-button-label {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #f16436;
+        }
+
+        .cf-button-sub {
+            font-size: 0.72rem;
+            color: #8b6e63;
+            font-weight: 400;
+        }
+
+        .cf-button-arrow {
+            margin-left: auto;
+            color: #f16436;
+            font-size: 1rem;
+            opacity: 0.7;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .cf-button:hover .cf-button-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
         .external-link {
             display: flex;
             align-items: center;
@@ -616,7 +721,7 @@
 <div class="step-num">1</div>
 <div class="step-content">
 <h4>Install Minecraft Forge</h4>
-<p>Download and install <code>Forge</code> for the Minecraft version required by the mod. You can find the correct version listed on the CurseForge page.</p>
+<p>Download and install <code>Forge</code> for the Minecraft version required by the mod. You can find the correct version listed on the <a href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank" class="cf-link">CurseForge page</a>.</p>
 </div>
 </div>
 <div class="step">
@@ -666,9 +771,19 @@
 </div>
 <div class="widget">
 <div class="widget-title">🔗 External Links</div>
-<a class="external-link" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
-                    ⬇️ CurseForge Page
-                </a>
+<a class="cf-button" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
+    <div class="cf-button-icon">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+            <path d="M26 6H18l2 4h-4l-2-4H6l-2 6h4l1 2H5l-3 12h28l-3-12h-4l1-2h4z" fill="#f16436"/>
+            <path d="M14 18h4v4h-4z" fill="#1e0e08"/>
+        </svg>
+    </div>
+    <div class="cf-button-text">
+        <span class="cf-button-label">CurseForge Page</span>
+        <span class="cf-button-sub">Download &amp; mod info</span>
+    </div>
+    <span class="cf-button-arrow">›</span>
+</a>
 <a class="external-link" href="https://minecraft.net" target="_blank">
                     🎮 Minecraft Official
                 </a>
@@ -681,9 +796,9 @@
 <ul>
 <li><a href="#getting-started">🚀 Getting Started</a></li>
 <li>
-<a href="/devil-fruits.html">
+<a href="#features">
                             🍎 Devil Fruits
-                            
+                            <span class="wiki-tag-soon">Soon</span>                           
 </a>
 </li>
 <li>
