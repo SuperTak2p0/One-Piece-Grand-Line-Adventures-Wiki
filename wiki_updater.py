@@ -175,6 +175,38 @@ FEATURE_PAGE_TEMPLATE = """\
             border-radius: 10px;
             padding: 1.25rem;
         }}
+        .wiki-nav {{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }}
+        .wiki-nav li {{
+            border-bottom: 1px solid #21262d;
+        }}
+        .wiki-nav li:last-child {{ border-bottom: none; }}
+        .wiki-nav a {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.45rem 0;
+            font-size: 0.85rem;
+            color: #c9d1d9;
+            text-decoration: none;
+            transition: color 0.2s;
+        }}
+        .wiki-nav a:hover {{ color: #c8960c; }}
+        .wiki-nav a.active {{ color: #f0c040; font-weight: 700; }}
+        .wiki-tag-soon {{
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: rgba(200,150,12,0.15);
+            border: 1px solid rgba(200,150,12,0.35);
+            color: #c8960c;
+            border-radius: 4px;
+            padding: 0.1rem 0.4rem;
+        }}
         .widget-title {{
             font-size: 0.82rem;
             font-weight: 700;
@@ -277,6 +309,14 @@ FEATURE_PAGE_TEMPLATE = """\
                     <span class="info-label">Under Editing</span>
                     <span class="info-value {editing_class}">{under_editing_value}</span>
                 </div>
+            </div>
+
+            <div class="info-widget" style="margin-top:1rem;">
+                <div class="widget-title">Wiki Pages</div>
+                <ul class="wiki-nav">
+                    <li><a href="{base_url}/index.html">Home</a></li>
+                    {wiki_nav_items}
+                </ul>
             </div>
         </aside>
     </div>
@@ -381,6 +421,7 @@ class WikiUpdater:
             release_date=estimated_date,
             mod_version=mod_version,
             under_editing=False,
+            soup=soup,
         )
         print(f'[WikiUpdater] Detail page created: {page_file}')
 
@@ -435,6 +476,7 @@ class WikiUpdater:
             release_date=release_date,
             mod_version=mod_version,
             under_editing=under_editing,
+            soup=soup,
         )
         print(f'[WikiUpdater] Detail page created/updated: {page_file}')
 
@@ -528,6 +570,29 @@ class WikiUpdater:
     #  Private helpers — detail page                                       #
     # ------------------------------------------------------------------ #
 
+    def _build_wiki_nav_items(self, soup, current_filename: str) -> str:
+        """Reads the Wiki Pages sidebar from index.html and returns nav <li> HTML."""
+        lines = []
+        for widget in soup.find_all("div", class_="widget"):
+            title_el = widget.find("div", class_="widget-title")
+            if title_el and "wiki pages" in title_el.get_text().lower():
+                for li in widget.find_all("li"):
+                    a = li.find("a")
+                    if not a:
+                        continue
+                    href = a.get("href", "#")
+                    soon = li.find("span", class_="wiki-tag-soon")
+                    # Determine if this link points to the current page
+                    is_active = href.rstrip("/").endswith(current_filename)
+                    active_class = ' class="active"' if is_active else ""
+                    label = a.get_text(strip=True).replace("Soon", "").strip()
+                    tag = ' <span class="wiki-tag-soon">Soon</span>' if soon else ""
+                    lines.append(
+                        f'<li><a href="{href}"{active_class}>{label}{tag}</a></li>'
+                    )
+                break
+        return "\n                    ".join(lines)
+
     def _create_detail_page(
         self,
         filename: str,
@@ -537,6 +602,7 @@ class WikiUpdater:
         release_date: str,
         mod_version: str,
         under_editing: bool,
+        soup=None,
     ):
         if released:
             status_class = "released"
@@ -554,11 +620,17 @@ class WikiUpdater:
             editing_class = "editing-no"
             under_editing_value = "No"
 
+        if soup is not None:
+            wiki_nav_items = self._build_wiki_nav_items(soup, filename)
+        else:
+            wiki_nav_items = ""
+
         content = FEATURE_PAGE_TEMPLATE.format(
             title=title,
             description=description,
             logo_url=LOGO_URL,
             curseforge_url=CURSEFORGE_URL,
+            base_url=BASE_URL,
             status_class=status_class,
             status_label=status_label,
             release_date_label=release_date_label,
@@ -566,6 +638,7 @@ class WikiUpdater:
             mod_version=mod_version,
             editing_class=editing_class,
             under_editing_value=under_editing_value,
+            wiki_nav_items=wiki_nav_items,
         )
         with open(filename, "w", encoding="utf-8") as f:
             f.write(content)

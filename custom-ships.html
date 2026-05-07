@@ -167,6 +167,38 @@
             border-radius: 10px;
             padding: 1.25rem;
         }
+        .wiki-nav {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .wiki-nav li {
+            border-bottom: 1px solid #21262d;
+        }
+        .wiki-nav li:last-child { border-bottom: none; }
+        .wiki-nav a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.45rem 0;
+            font-size: 0.85rem;
+            color: #c9d1d9;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .wiki-nav a:hover { color: #c8960c; }
+        .wiki-nav a.active { color: #f0c040; font-weight: 700; }
+        .wiki-tag-soon {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: rgba(200,150,12,0.15);
+            border: 1px solid rgba(200,150,12,0.35);
+            color: #c8960c;
+            border-radius: 4px;
+            padding: 0.1rem 0.4rem;
+        }
         .widget-title {
             font-size: 0.82rem;
             font-weight: 700;
@@ -269,6 +301,20 @@
                     <span class="info-label">Under Editing</span>
                     <span class="info-value editing-no">No</span>
                 </div>
+            </div>
+
+            <div class="info-widget" style="margin-top:1rem;">
+                <div class="widget-title">Wiki Pages</div>
+                <ul class="wiki-nav">
+                    <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/index.html">Home</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/devil-fruits.html">Devil Fruits <span class="wiki-tag-soon">Soon</span></a></li>
+                    <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/haki-system.html">Haki System <span class="wiki-tag-soon">Soon</span></a></li>
+                    <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/custom-ships.html" class="active">Custom Ships <span class="wiki-tag-soon">Soon</span></a></li>
+                    <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/new-biomes.html">New Biomes <span class="wiki-tag-soon">Soon</span></a></li>
+                    <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/bounty-system.html">Bounty System <span class="wiki-tag-soon">Soon</span></a></li>
+                    <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/factions.html">Factions <span class="wiki-tag-soon">Soon</span></a></li>
+                </ul>
             </div>
         </aside>
     </div>
