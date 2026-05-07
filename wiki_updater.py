@@ -181,6 +181,7 @@ FEATURE_PAGE_TEMPLATE = """\
             padding: 0;
         }}
         .wiki-nav li {{
+            padding: 0.35rem 0;
             border-bottom: 1px solid #21262d;
         }}
         .wiki-nav li:last-child {{ border-bottom: none; }}
@@ -188,24 +189,23 @@ FEATURE_PAGE_TEMPLATE = """\
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.45rem 0;
-            font-size: 0.85rem;
-            color: #c9d1d9;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #8b949e;
             text-decoration: none;
             transition: color 0.2s;
         }}
         .wiki-nav a:hover {{ color: #c8960c; }}
-        .wiki-nav a.active {{ color: #f0c040; font-weight: 700; }}
+        .wiki-nav a.active {{ color: #c8960c; font-weight: 700; }}
         .wiki-tag-soon {{
             font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: rgba(200,150,12,0.15);
-            border: 1px solid rgba(200,150,12,0.35);
-            color: #c8960c;
-            border-radius: 4px;
+            background: rgba(139,100,20,0.2);
+            border: 1px solid rgba(200,150,12,0.25);
+            color: #8b6914;
             padding: 0.1rem 0.4rem;
+            border-radius: 10px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }}
         .widget-title {{
             font-size: 0.82rem;
@@ -413,6 +413,7 @@ class WikiUpdater:
         with open(self.INDEX_PATH, "w", encoding="utf-8") as f:
             f.write(str(soup))
 
+        self._update_all_wiki_navs(soup, skip_file=page_file)
         self._create_detail_page(
             filename=page_file,
             title=feature_name,
@@ -468,6 +469,7 @@ class WikiUpdater:
         with open(self.INDEX_PATH, "w", encoding="utf-8") as f:
             f.write(str(soup))
 
+        self._update_all_wiki_navs(soup, skip_file=page_file)
         self._create_detail_page(
             filename=page_file,
             title=feature_name,
@@ -569,6 +571,30 @@ class WikiUpdater:
     # ------------------------------------------------------------------ #
     #  Private helpers — detail page                                       #
     # ------------------------------------------------------------------ #
+
+    def _update_all_wiki_navs(self, soup, skip_file: str = ""):
+        """
+        After index.html is updated, push the refreshed Wiki Pages nav
+        into every existing feature detail page.
+        """
+        import glob as _glob
+        for path in sorted(_glob.glob("*.html")):
+            if path == self.INDEX_PATH or path == skip_file:
+                continue
+            with open(path, "r", encoding="utf-8") as f:
+                page_soup = BeautifulSoup(f.read(), "html.parser")
+            nav_ul = page_soup.find("ul", class_="wiki-nav")
+            if nav_ul is None:
+                continue
+            new_items_html = self._build_wiki_nav_items(soup, path)
+            new_ul = BeautifulSoup(
+                f'<ul class="wiki-nav">\n                    {new_items_html}\n                </ul>',
+                "html.parser",
+            ).ul
+            nav_ul.replace_with(new_ul)
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(str(page_soup))
+            print(f'[WikiUpdater] Updated wiki nav in: {path}')
 
     def _build_wiki_nav_items(self, soup, current_filename: str) -> str:
         """Reads the Wiki Pages sidebar from index.html and returns nav <li> HTML."""
