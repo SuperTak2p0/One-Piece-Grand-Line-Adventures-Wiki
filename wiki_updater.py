@@ -10,6 +10,7 @@ FEATURE_PAGE_TEMPLATE = """\
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} — Grand Line Adventures Wiki</title>
+    <link href="https://github.com/SuperTak2p0/One-Piece-Grand-Line-Adventures-Wiki/blob/main/images/logo.jpeg?raw=true" rel="icon" type="image/jpeg"/>
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
@@ -163,7 +164,7 @@ FEATURE_PAGE_TEMPLATE = """\
 
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-icon">{icon}</div>
+            <div class="hero-icon"></div>
             <span class="released-badge">✅ Released</span>
             <h1>{title}</h1>
             <p>{description}</p>
@@ -209,35 +210,32 @@ class WikiUpdater:
         # Mark an existing planned feature as released:
         updater.release_feature(
             feature_name="Devil Fruits",
-            description="Discover and consume powerful Devil Fruits!",
-            icon="🍎"
+            description="Discover and consume powerful Devil Fruits!"
         )
 
         # Add a completely new, unplanned feature and release it immediately:
         updater.release_feature(
             feature_name="Sea Kings",
-            description="Massive sea creatures roam the oceans.",
-            icon="🐉"
+            description="Massive sea creatures roam the oceans."
         )
     """
 
     INDEX_PATH = "index.html"
 
-    def release_feature(self, feature_name: str, description: str, icon: str = "⭐"):
+    def release_feature(self, feature_name: str, description: str):
         """
         Marks a feature as released in index.html and creates a detail page.
 
         Args:
             feature_name:  Display name of the feature (e.g. "Devil Fruits").
             description:   Short description shown on the card and detail page.
-            icon:          Emoji icon for the feature card (default ⭐).
         """
         with open(self.INDEX_PATH, "r", encoding="utf-8") as f:
             soup = BeautifulSoup(f.read(), "html.parser")
 
         page_slug = self._slugify(feature_name)
         page_file = f"{page_slug}.html"
-        page_url = f"/{page_file}"
+        page_url = f"https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/{page_file}"
 
         card_grid = soup.find("div", class_="card-grid")
         if card_grid is None:
@@ -328,7 +326,7 @@ class WikiUpdater:
                 a["href"] = page_url
                 return
 
-        new_li_html = f'<li><a href="{page_url}">⭐ {feature_name}</a></li>'
+        new_li_html = f'<li><a href="{page_url}">{feature_name}</a></li>'
         new_li = BeautifulSoup(new_li_html, "html.parser").li
         sidebar_ul.append(new_li)
 
