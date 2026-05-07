@@ -3,6 +3,7 @@ import re
 
 LOGO_URL = "https://github.com/SuperTak2p0/One-Piece-Grand-Line-Adventures-Wiki/blob/main/images/logo.jpeg?raw=true"
 CURSEFORGE_URL = "https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures"
+BASE_URL = "https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki"
 
 FEATURE_PAGE_TEMPLATE = """\
 <!DOCTYPE html>
@@ -353,7 +354,7 @@ class WikiUpdater:
 
         page_slug = self._slugify(feature_name)
         page_file = f"{page_slug}.html"
-        page_url = f"/{page_file}"
+        page_url = f"{BASE_URL}/{page_file}"
 
         card_grid = soup.find("div", class_="card-grid")
         if card_grid is None:
@@ -406,7 +407,7 @@ class WikiUpdater:
 
         page_slug = self._slugify(feature_name)
         page_file = f"{page_slug}.html"
-        page_url = f"/{page_file}"
+        page_url = f"{BASE_URL}/{page_file}"
 
         card_grid = soup.find("div", class_="card-grid")
         if card_grid is None:
