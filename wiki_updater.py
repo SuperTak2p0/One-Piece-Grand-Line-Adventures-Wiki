@@ -236,8 +236,8 @@ FEATURE_PAGE_TEMPLATE = """\
 
     <div class="hero">
         <div class="hero-content">
-            <span class="status-badge {status_class}">{status_label}</span>
             <h1>{title}</h1>
+            <span class="status-badge {status_class}">{status_label}</span>
             <p>{description}</p>
         </div>
     </div>
