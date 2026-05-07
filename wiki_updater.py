@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
-import os
 import re
 
+LOGO_URL = "https://github.com/SuperTak2p0/One-Piece-Grand-Line-Adventures-Wiki/blob/main/images/logo.jpeg?raw=true"
+CURSEFORGE_URL = "https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures"
 
 FEATURE_PAGE_TEMPLATE = """\
 <!DOCTYPE html>
@@ -10,7 +11,7 @@ FEATURE_PAGE_TEMPLATE = """\
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} — Grand Line Adventures Wiki</title>
-    <link href="https://github.com/SuperTak2p0/One-Piece-Grand-Line-Adventures-Wiki/blob/main/images/logo.jpeg?raw=true" rel="icon" type="image/jpeg"/>
+    <link rel="icon" type="image/jpeg" href="{logo_url}"/>
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
@@ -19,6 +20,8 @@ FEATURE_PAGE_TEMPLATE = """\
             color: #c9d1d9;
             min-height: 100vh;
         }}
+
+        /* Header */
         header {{
             background: linear-gradient(135deg, #1a0a00 0%, #2d1200 40%, #1a0a00 100%);
             border-bottom: 3px solid #c8960c;
@@ -29,12 +32,12 @@ FEATURE_PAGE_TEMPLATE = """\
             box-shadow: 0 2px 20px rgba(200,150,12,0.3);
         }}
         .header-inner {{
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 1rem;
             height: 70px;
+            gap: 1rem;
         }}
         .logo {{
             display: flex;
@@ -70,6 +73,8 @@ FEATURE_PAGE_TEMPLATE = """\
             transition: color 0.2s;
         }}
         .back-link:hover {{ color: #c8960c; }}
+
+        /* Hero */
         .hero {{
             background: linear-gradient(180deg, #1a0a00 0%, #0d1117 100%);
             border-bottom: 1px solid #21262d;
@@ -84,20 +89,10 @@ FEATURE_PAGE_TEMPLATE = """\
             inset: 0;
             background: radial-gradient(ellipse at 50% 0%, rgba(200,150,12,0.12) 0%, transparent 70%);
         }}
-        .hero-content {{ position: relative; max-width: 700px; margin: 0 auto; }}
-        .hero-icon {{ font-size: 4rem; margin-bottom: 1rem; }}
-        .released-badge {{
-            display: inline-block;
-            background: rgba(35,134,54,0.2);
-            border: 1px solid rgba(46,160,67,0.4);
-            color: #2ea043;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
+        .hero-content {{
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
         }}
         .hero h1 {{
             font-size: 2.5rem;
@@ -111,11 +106,39 @@ FEATURE_PAGE_TEMPLATE = """\
             color: #8b949e;
             line-height: 1.7;
         }}
-        .content {{
-            max-width: 800px;
+        .status-badge {{
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }}
+        .status-badge.released {{
+            background: rgba(35,134,54,0.2);
+            border: 1px solid rgba(46,160,67,0.4);
+            color: #2ea043;
+        }}
+        .status-badge.coming-soon {{
+            background: rgba(200,150,12,0.12);
+            border: 1px solid rgba(200,150,12,0.35);
+            color: #c8960c;
+        }}
+
+        /* Page layout */
+        .page-layout {{
+            max-width: 1100px;
             margin: 2rem auto;
             padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 270px;
+            gap: 2rem;
+            align-items: start;
         }}
+
+        /* Content boxes */
         .content-box {{
             background: #161b22;
             border: 1px solid #21262d;
@@ -123,8 +146,9 @@ FEATURE_PAGE_TEMPLATE = """\
             padding: 1.5rem;
             margin-bottom: 1.5rem;
         }}
+        .content-box:last-child {{ margin-bottom: 0; }}
         .content-box h2 {{
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: #e6edf3;
             margin-bottom: 0.75rem;
@@ -136,6 +160,49 @@ FEATURE_PAGE_TEMPLATE = """\
             color: #8b949e;
             line-height: 1.7;
         }}
+        .content-box a {{
+            color: #f16436;
+            font-weight: 700;
+            text-decoration: none;
+        }}
+        .content-box a:hover {{ color: #ff7a50; }}
+
+        /* Sidebar */
+        .info-widget {{
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 1.25rem;
+        }}
+        .widget-title {{
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #c8960c;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.9rem;
+        }}
+        .info-row {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.45rem 0;
+            border-bottom: 1px solid #21262d;
+            font-size: 0.85rem;
+        }}
+        .info-row:last-child {{ border-bottom: none; }}
+        .info-label {{ color: #8b949e; }}
+        .info-value {{
+            color: #e6edf3;
+            font-weight: 600;
+            text-align: right;
+        }}
+        .info-value.released {{ color: #2ea043; }}
+        .info-value.coming-soon {{ color: #c8960c; }}
+        .info-value.editing-yes {{ color: #58a6ff; }}
+        .info-value.editing-no {{ color: #8b949e; font-weight: 400; }}
+
+        /* Footer */
         footer {{
             border-top: 1px solid #21262d;
             padding: 2rem;
@@ -146,50 +213,77 @@ FEATURE_PAGE_TEMPLATE = """\
         }}
         footer a {{ color: #8b949e; text-decoration: none; }}
         footer a:hover {{ color: #c8960c; }}
+
+        @media (max-width: 720px) {{
+            .page-layout {{ grid-template-columns: 1fr; }}
+            .hero h1 {{ font-size: 1.8rem; }}
+        }}
     </style>
 </head>
 <body>
     <header>
         <div class="header-inner">
             <a class="logo" href="/">
-                <img src="https://github.com/SuperTak2p0/One-Piece-Grand-Line-Adventures-Wiki/blob/main/images/logo.jpeg?raw=true" alt="Logo">
+                <img src="{logo_url}" alt="Grand Line Adventures Logo">
                 <span>
                     <div class="logo-title">Grand Line Adventures</div>
                     <div class="logo-sub">Minecraft Mod Wiki</div>
                 </span>
             </a>
-            <a class="back-link" href="/">← Back to Wiki</a>
+            <a class="back-link" href="/">Back to Wiki</a>
         </div>
     </header>
 
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-icon"></div>
-            <span class="released-badge">✅ Released</span>
+            <span class="status-badge {status_class}">{status_label}</span>
             <h1>{title}</h1>
             <p>{description}</p>
         </div>
     </div>
 
-    <div class="content">
-        <div class="content-box">
-            <h2>About this Feature</h2>
-            <p>{description}</p>
-        </div>
-        <div class="content-box">
-            <h2>More details coming soon</h2>
-            <p>
-                This wiki page is being expanded. Check back after updates, or visit the
-                <a href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures"
-                   target="_blank" style="color:#c8960c;">CurseForge page</a> for the latest news.
-            </p>
-        </div>
+    <div class="page-layout">
+        <main>
+            <div class="content-box">
+                <h2>About this Feature</h2>
+                <p>{description}</p>
+            </div>
+            <div class="content-box">
+                <h2>More details coming soon</h2>
+                <p>
+                    This wiki page is being expanded. Check back after updates, or visit the
+                    <a href="{curseforge_url}" target="_blank">CurseForge page</a> for the latest news.
+                </p>
+            </div>
+        </main>
+
+        <aside>
+            <div class="info-widget">
+                <div class="widget-title">Feature Info</div>
+                <div class="info-row">
+                    <span class="info-label">Status</span>
+                    <span class="info-value {status_class}">{status_label}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">{release_date_label}</span>
+                    <span class="info-value">{release_date_value}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mod Version</span>
+                    <span class="info-value">{mod_version}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Under Editing</span>
+                    <span class="info-value {editing_class}">{under_editing_value}</span>
+                </div>
+            </div>
+        </aside>
     </div>
 
     <footer>
         <p>
             One Piece: Grand Line Adventures Wiki &mdash;
-            <a href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">Minecraft Forge Mod</a>.
+            <a href="{curseforge_url}" target="_blank">Minecraft Forge Mod</a>.
             One Piece &copy; Eiichiro Oda / Shueisha. Not affiliated with Mojang.
         </p>
     </footer>
@@ -200,64 +294,152 @@ FEATURE_PAGE_TEMPLATE = """\
 
 class WikiUpdater:
     """
-    Updates the wiki's index.html to mark a feature as released,
-    or add a brand-new released feature box if it wasn't previously planned.
-    Also generates a dedicated detail page for the feature.
+    Manages the Grand Line Adventures wiki pages.
 
-    Usage:
-        updater = WikiUpdater()
+    Methods
+    -------
+    plan_feature(feature_name, description, estimated_date, mod_version)
+        Adds a new "Coming Soon" card to index.html and creates a detail page.
 
-        # Mark an existing planned feature as released:
-        updater.release_feature(
-            feature_name="Devil Fruits",
-            description="Discover and consume powerful Devil Fruits!"
-        )
+    release_feature(feature_name, description, release_date, mod_version, under_editing)
+        Marks a feature as released in index.html and creates/updates its detail page.
 
-        # Add a completely new, unplanned feature and release it immediately:
-        updater.release_feature(
-            feature_name="Sea Kings",
-            description="Massive sea creatures roam the oceans."
-        )
+    Examples
+    --------
+    updater = WikiUpdater()
+
+    # Add a planned (coming soon) feature:
+    updater.plan_feature(
+        feature_name="Sea Kings",
+        description="Massive sea creatures roam the Grand Line oceans.",
+        estimated_date="Q3 2025",
+        mod_version="TBD",
+    )
+
+    # Mark a feature as released:
+    updater.release_feature(
+        feature_name="Factions",
+        description="Align with the Marines, Pirates, or the World Government.",
+        release_date="2025-06-01",
+        mod_version="1.2.0",
+        under_editing=True,
+    )
     """
 
     INDEX_PATH = "index.html"
 
-    def release_feature(self, feature_name: str, description: str):
+    # ------------------------------------------------------------------ #
+    #  Public API                                                          #
+    # ------------------------------------------------------------------ #
+
+    def plan_feature(
+        self,
+        feature_name: str,
+        description: str,
+        estimated_date: str = "TBD",
+        mod_version: str = "TBD",
+    ):
         """
-        Marks a feature as released in index.html and creates a detail page.
+        Adds a Coming Soon feature card to index.html and creates its detail page.
 
         Args:
-            feature_name:  Display name of the feature (e.g. "Devil Fruits").
-            description:   Short description shown on the card and detail page.
+            feature_name:    Display name (e.g. "Sea Kings").
+            description:     Short description for the card and detail page.
+            estimated_date:  Estimated release, e.g. "Q3 2025" or "TBD".
+            mod_version:     Target mod version, e.g. "1.3.0" or "TBD".
         """
         with open(self.INDEX_PATH, "r", encoding="utf-8") as f:
             soup = BeautifulSoup(f.read(), "html.parser")
 
         page_slug = self._slugify(feature_name)
         page_file = f"{page_slug}.html"
-        page_url = f"https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/{page_file}"
+        page_url = f"/{page_file}"
 
         card_grid = soup.find("div", class_="card-grid")
         if card_grid is None:
             raise RuntimeError("Could not find .card-grid in index.html")
 
         existing_card = self._find_card(card_grid, feature_name)
-
         if existing_card:
-            self._upgrade_card(existing_card, description, icon, page_url)
-            print(f'[WikiUpdater] Marked existing feature "{feature_name}" as released.')
+            print(f'[WikiUpdater] Feature "{feature_name}" already exists — skipping card creation.')
         else:
-            new_card = self._build_released_card(soup, feature_name, description, icon, page_url)
+            new_card = self._build_planned_card(feature_name, description, page_url)
             card_grid.append(new_card)
-            print(f'[WikiUpdater] Added new released feature "{feature_name}" to the wiki.')
+            print(f'[WikiUpdater] Added planned feature "{feature_name}" to index.html.')
 
-        self._update_sidebar(soup, feature_name, page_url)
+        self._update_sidebar(soup, feature_name, page_url, released=False)
 
         with open(self.INDEX_PATH, "w", encoding="utf-8") as f:
             f.write(str(soup))
 
-        self._create_detail_page(page_file, feature_name, description, icon)
+        self._create_detail_page(
+            filename=page_file,
+            title=feature_name,
+            description=description,
+            released=False,
+            release_date=estimated_date,
+            mod_version=mod_version,
+            under_editing=False,
+        )
         print(f'[WikiUpdater] Detail page created: {page_file}')
+
+    def release_feature(
+        self,
+        feature_name: str,
+        description: str,
+        release_date: str = "TBD",
+        mod_version: str = "TBD",
+        under_editing: bool = False,
+    ):
+        """
+        Marks a feature as released in index.html and creates/updates its detail page.
+
+        Args:
+            feature_name:   Display name (e.g. "Devil Fruits").
+            description:    Short description for the card and detail page.
+            release_date:   Actual release date, e.g. "2025-06-01" or "TBD".
+            mod_version:    Mod version it shipped in, e.g. "1.2.0" or "TBD".
+            under_editing:  True if the wiki page is still being written.
+        """
+        with open(self.INDEX_PATH, "r", encoding="utf-8") as f:
+            soup = BeautifulSoup(f.read(), "html.parser")
+
+        page_slug = self._slugify(feature_name)
+        page_file = f"{page_slug}.html"
+        page_url = f"/{page_file}"
+
+        card_grid = soup.find("div", class_="card-grid")
+        if card_grid is None:
+            raise RuntimeError("Could not find .card-grid in index.html")
+
+        existing_card = self._find_card(card_grid, feature_name)
+        if existing_card:
+            self._upgrade_card(existing_card, description, page_url)
+            print(f'[WikiUpdater] Marked existing feature "{feature_name}" as released.')
+        else:
+            new_card = self._build_released_card(feature_name, description, page_url)
+            card_grid.append(new_card)
+            print(f'[WikiUpdater] Added new released feature "{feature_name}" to index.html.')
+
+        self._update_sidebar(soup, feature_name, page_url, released=True)
+
+        with open(self.INDEX_PATH, "w", encoding="utf-8") as f:
+            f.write(str(soup))
+
+        self._create_detail_page(
+            filename=page_file,
+            title=feature_name,
+            description=description,
+            released=True,
+            release_date=release_date,
+            mod_version=mod_version,
+            under_editing=under_editing,
+        )
+        print(f'[WikiUpdater] Detail page created/updated: {page_file}')
+
+    # ------------------------------------------------------------------ #
+    #  Private helpers — index.html                                        #
+    # ------------------------------------------------------------------ #
 
     def _find_card(self, card_grid, feature_name: str):
         for card in card_grid.find_all("div", class_="card"):
@@ -266,12 +448,29 @@ class WikiUpdater:
                 return card
         return None
 
-    def _upgrade_card(self, card, description: str, icon: str, page_url: str):
-        card["class"] = [c for c in card.get("class", []) if c != "released"] + ["card", "released"]
+    def _build_planned_card(self, feature_name: str, description: str, page_url: str):
+        html = (
+            f'<div class="card">'
+            f'<h3>{feature_name} <span class="coming-soon-tag">Coming Soon</span></h3>'
+            f'<p>{description}</p>'
+            f'<a class="feature-link" href="{page_url}">Read more</a>'
+            f'</div>'
+        )
+        return BeautifulSoup(html, "html.parser").find("div", class_="card")
 
-        icon_tag = card.find("div", class_="card-icon")
-        if icon_tag:
-            icon_tag.string = icon
+    def _build_released_card(self, feature_name: str, description: str, page_url: str):
+        html = (
+            f'<div class="card released">'
+            f'<h3>{feature_name} <span class="released-tag">Released</span></h3>'
+            f'<p>{description}</p>'
+            f'<a class="feature-link" href="{page_url}">Read more</a>'
+            f'</div>'
+        )
+        return BeautifulSoup(html, "html.parser").find("div", class_="card")
+
+    def _upgrade_card(self, card, description: str, page_url: str):
+        classes = [c for c in card.get("class", []) if c not in ("released", "card")]
+        card["class"] = ["card", "released"] + classes
 
         desc_tag = card.find("p")
         if desc_tag:
@@ -281,36 +480,24 @@ class WikiUpdater:
         if h3:
             for tag in h3.find_all("span"):
                 tag.decompose()
-            released_span = BeautifulSoup(
-                '<span class="released-tag">Released</span>', "html.parser"
-            ).span
+            span = BeautifulSoup('<span class="released-tag">Released</span>', "html.parser").span
             h3.append(" ")
-            h3.append(released_span)
+            h3.append(span)
 
-        existing_link = card.find("a", class_="feature-link")
-        if not existing_link:
-            link = BeautifulSoup(
-                f'<a class="feature-link" href="{page_url}">→ View full page</a>',
-                "html.parser"
+        link = card.find("a", class_="feature-link")
+        if not link:
+            a = BeautifulSoup(
+                f'<a class="feature-link" href="{page_url}">Read more</a>', "html.parser"
             ).a
-            card.append(link)
+            card.append(a)
+        else:
+            link["href"] = page_url
 
-    def _build_released_card(self, soup, feature_name: str, description: str, icon: str, page_url: str):
-        html = f"""
-        <div class="card released">
-            <div class="card-icon">{icon}</div>
-            <h3>{feature_name} <span class="released-tag">Released</span></h3>
-            <p>{description}</p>
-            <a class="feature-link" href="{page_url}">→ View full page</a>
-        </div>
-        """
-        return BeautifulSoup(html, "html.parser").find("div", class_="card")
-
-    def _update_sidebar(self, soup, feature_name: str, page_url: str):
+    def _update_sidebar(self, soup, feature_name: str, page_url: str, released: bool):
         sidebar_ul = None
         for widget in soup.find_all("div", class_="widget"):
-            title = widget.find("div", class_="widget-title")
-            if title and "wiki pages" in title.get_text().lower():
+            title_el = widget.find("div", class_="widget-title")
+            if title_el and "wiki pages" in title_el.get_text().lower():
                 sidebar_ul = widget.find("ul")
                 break
 
@@ -320,21 +507,64 @@ class WikiUpdater:
         for li in sidebar_ul.find_all("li"):
             a = li.find("a")
             if a and feature_name.lower() in a.get_text().lower():
-                soon_tag = li.find("span", class_="wiki-tag-soon")
-                if soon_tag:
-                    soon_tag.decompose()
                 a["href"] = page_url
+                soon_tag = li.find("span", class_="wiki-tag-soon")
+                if soon_tag and released:
+                    soon_tag.decompose()
                 return
 
-        new_li_html = f'<li><a href="{page_url}">{feature_name}</a></li>'
-        new_li = BeautifulSoup(new_li_html, "html.parser").li
-        sidebar_ul.append(new_li)
+        if released:
+            new_li_html = f'<li><a href="{page_url}">{feature_name}</a></li>'
+        else:
+            new_li_html = (
+                f'<li><a href="{page_url}">'
+                f'{feature_name} <span class="wiki-tag-soon">Soon</span>'
+                f'</a></li>'
+            )
+        sidebar_ul.append(BeautifulSoup(new_li_html, "html.parser").li)
 
-    def _create_detail_page(self, filename: str, title: str, description: str, icon: str):
+    # ------------------------------------------------------------------ #
+    #  Private helpers — detail page                                       #
+    # ------------------------------------------------------------------ #
+
+    def _create_detail_page(
+        self,
+        filename: str,
+        title: str,
+        description: str,
+        released: bool,
+        release_date: str,
+        mod_version: str,
+        under_editing: bool,
+    ):
+        if released:
+            status_class = "released"
+            status_label = "Released"
+            release_date_label = "Release Date"
+        else:
+            status_class = "coming-soon"
+            status_label = "Coming Soon"
+            release_date_label = "Est. Release"
+
+        if under_editing:
+            editing_class = "editing-yes"
+            under_editing_value = "Yes"
+        else:
+            editing_class = "editing-no"
+            under_editing_value = "No"
+
         content = FEATURE_PAGE_TEMPLATE.format(
             title=title,
             description=description,
-            icon=icon,
+            logo_url=LOGO_URL,
+            curseforge_url=CURSEFORGE_URL,
+            status_class=status_class,
+            status_label=status_label,
+            release_date_label=release_date_label,
+            release_date_value=release_date,
+            mod_version=mod_version,
+            editing_class=editing_class,
+            under_editing_value=under_editing_value,
         )
         with open(filename, "w", encoding="utf-8") as f:
             f.write(content)
@@ -343,5 +573,14 @@ class WikiUpdater:
     def _slugify(name: str) -> str:
         slug = name.lower()
         slug = re.sub(r"[^a-z0-9]+", "-", slug)
-        slug = slug.strip("-")
-        return slug
+        return slug.strip("-")
+
+
+if __name__ == "__main__":
+    print("WikiUpdater ready.")
+    print()
+    print("Plan a coming-soon feature:")
+    print('  updater.plan_feature("Sea Kings", "Massive creatures of the sea.", estimated_date="Q3 2025", mod_version="TBD")')
+    print()
+    print("Release a feature:")
+    print('  updater.release_feature("Factions", "Join Marines or Pirates.", release_date="2025-06-01", mod_version="1.2.0", under_editing=True)')
