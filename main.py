@@ -6,7 +6,9 @@ def main():
     updater.release_feature(
         feature_name="Factions",
         description="Align with the Marines, join a Pirate Crew, or work for the World Government — your choice.",
-        icon= "🤝"
+        release_date="Apr 29, 2026",
+        mod_version="1.1.4",
+        under_editing=True
     )
 
 
