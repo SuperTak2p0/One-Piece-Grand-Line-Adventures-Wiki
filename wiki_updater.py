@@ -256,14 +256,14 @@ FEATURE_PAGE_TEMPLATE = """\
 <body>
     <header>
         <div class="header-inner">
-            <a class="logo" href="/">
+            <a class="logo" href="{BASE_URL}">
                 <img src="{logo_url}" alt="Grand Line Adventures Logo">
                 <span>
                     <div class="logo-title">Grand Line Adventures</div>
                     <div class="logo-sub">Minecraft Mod Wiki</div>
                 </span>
             </a>
-            <a class="back-link" href="/">Back to Wiki</a>
+            <a class="back-link" href="{BASE_URL}">Back to Wiki</a>
         </div>
     </header>
 
