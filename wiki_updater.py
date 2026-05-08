@@ -256,14 +256,14 @@ FEATURE_PAGE_TEMPLATE = """\
 <body>
     <header>
         <div class="header-inner">
-            <a class="logo" href="{BASE_URL}">
+            <a class="logo" href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki">
                 <img src="{logo_url}" alt="Grand Line Adventures Logo">
                 <span>
                     <div class="logo-title">Grand Line Adventures</div>
                     <div class="logo-sub">Minecraft Mod Wiki</div>
                 </span>
             </a>
-            <a class="back-link" href="{BASE_URL}">Back to Wiki</a>
+            <a class="back-link" href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki">Back to Wiki</a>
         </div>
     </header>
 
