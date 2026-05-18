@@ -162,7 +162,7 @@ FEATURE_PAGE_TEMPLATE = """\
             line-height: 1.7;
         }}
         .content-box a {{
-            color: #f16436;
+            color: #f0c040;
             font-weight: 700;
             text-decoration: none;
         }}
