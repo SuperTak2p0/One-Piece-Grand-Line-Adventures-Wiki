@@ -326,6 +326,7 @@ FEATURE_PAGE_TEMPLATE = """\
             One Piece: Grand Line Adventures Wiki &mdash;
             <a href="{curseforge_url}" target="_blank">Minecraft Forge Mod</a>.
             One Piece &copy; Eiichiro Oda / Shueisha. Not affiliated with Mojang.
+            Want a Server? <a href= "https://url-shortener.curseforge.com/qybN3">Click here</a> and get 25% off!
         </p>
     </footer>
 </body>
