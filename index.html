@@ -185,9 +185,27 @@
 
         .hero-buttons {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 1rem;
-            justify-content: center;
+        }
+
+        .download-row {
+            display: flex;
+            gap: 1rem;
             flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-modrinth {
+            background: #1bd96a;
+            color: #0d1117;
+        }
+
+        .btn-modrinth:hover {
+            background: #22f078;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(27,217,106,0.4);
         }
 
         .btn {
@@ -644,12 +662,17 @@
                 This wiki will be updated as new features are added to the mod.
             </p>
 <div class="hero-buttons">
-<a class="btn btn-primary" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
-                    ⬇ Download on CurseForge
-                </a>
-<a class="btn btn-secondary" href="#getting-started">
-                    Getting Started
-                </a>
+    <div class="download-row">
+        <a class="btn btn-primary" href="https://www.curseforge.com/minecraft/mc-mods/one-piece-grand-line-adventures" target="_blank">
+            ⬇ Download on CurseForge
+        </a>
+        <a class="btn btn-modrinth" href="https://modrinth.com/mod/one-piece-grand-line-adventures" target="_blank">
+            ⬇ Download on Modrinth
+        </a>
+    </div>
+    <a class="btn btn-secondary" href="#getting-started">
+        Getting Started
+    </a>
 </div>
 </div>
 </div>
