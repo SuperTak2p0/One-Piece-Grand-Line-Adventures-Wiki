@@ -184,7 +184,73 @@
         .content-box img {
           max-width: 100%;
           height: auto;
-          display: block; /* Removes weird gaps under images */
+          display: block;
+        }
+
+        /* Image carousel */
+        .carousel {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #010409;
+            margin: 1rem 0;
+            user-select: none;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.35s ease;
+        }
+        .carousel-slide {
+            min-width: 100%;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(13,17,23,0.8);
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+            z-index: 10;
+        }
+        .carousel-btn:hover {
+            background: rgba(200,150,12,0.85);
+            color: #0d1117;
+            border-color: #c8960c;
+        }
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+            padding: 9px 0 7px;
+            background: #010409;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #30363d;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .carousel-dot.active {
+            background: #c8960c;
         }
         
         .content-box code {
@@ -354,13 +420,26 @@
 <h2>How to Join a Faction</h2>
 <h3>Option 1 (only first time)</h3>
 <p>
-                        When you first join the world, you will be prompted to choose a faction.
-                        You can choose between Pirate, Marine, Bounty Hunter, and Revolutionary.
-
-                        Select your faction choice on the faction(/race) selection screen:
+                        When you first join the world, the faction selection screen will appear.
+                        You can choose between the available factions. If you click the faction button, the next faction will be selected.
                     </p>
 
-<img alt="Faction Selection Screen" src="https://github.com/SuperTak2p0/One-Piece-Grand-Line-Adventures-Wiki/blob/main/images/FactionSelectionScreen_New2.PNG?raw=true"/>
+<div class="carousel">
+    <div class="carousel-track">
+        <div class="carousel-slide">
+            <img alt="Faction Selection Screen" src="https://github.com/SuperTak2p0/One-Piece-Grand-Line-Adventures-Wiki/blob/main/images/FactionSelectionScreen_New2.PNG?raw=true"/>
+        </div>
+        <div class="carousel-slide">
+            <img alt="Second Screenshot" src="YOUR_SECOND_IMAGE_URL_HERE"/>
+        </div>
+    </div>
+    <button class="carousel-btn prev">&#8249;</button>
+    <button class="carousel-btn next">&#8250;</button>
+    <div class="carousel-dots">
+        <div class="carousel-dot active"></div>
+        <div class="carousel-dot"></div>
+    </div>
+</div>
 
 
 <h3>Option 2 (any time)</h3>
@@ -368,7 +447,7 @@
                         Use this command (press T and type):
                     </p>
 
-<code>/onepiece setfaction [faction]</code>
+<code>/onepiece setfaction faction.onepiecemod.[faction]</code>
 
 
 
@@ -430,5 +509,26 @@
     Want a Server? <a href= "https://url-shortener.curseforge.com/qybN3">Click here</a> and get 25% off!
         </p>
 </footer>
+<script>
+    document.querySelectorAll('.carousel').forEach(function(carousel) {
+        var track = carousel.querySelector('.carousel-track');
+        var slides = carousel.querySelectorAll('.carousel-slide');
+        var dots = carousel.querySelectorAll('.carousel-dot');
+        var current = 0;
+
+        function goTo(n) {
+            current = (n + slides.length) % slides.length;
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            dots.forEach(function(d, i) {
+                d.classList.toggle('active', i === current);
+            });
+        }
+
+        carousel.querySelector('.prev').addEventListener('click', function() { goTo(current - 1); });
+        carousel.querySelector('.next').addEventListener('click', function() { goTo(current + 1); });
+        dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
+        goTo(0);
+    });
+</script>
 </body>
 </html>
