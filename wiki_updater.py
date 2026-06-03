@@ -577,24 +577,37 @@ class WikiUpdater:
         """
         After index.html is updated, push the refreshed Wiki Pages nav
         into every existing feature detail page.
+
+        Uses raw-text regex replacement so that ONLY the <ul class="wiki-nav">
+        block is touched — all other custom content in the file is preserved
+        exactly as-is (carousel, JS, custom CSS, etc.).
         """
         import glob as _glob
+        import re as _re
         for path in sorted(_glob.glob("*.html")):
             if path == self.INDEX_PATH or path == skip_file:
                 continue
             with open(path, "r", encoding="utf-8") as f:
-                page_soup = BeautifulSoup(f.read(), "html.parser")
-            nav_ul = page_soup.find("ul", class_="wiki-nav")
-            if nav_ul is None:
+                content = f.read()
+            if 'class="wiki-nav"' not in content:
                 continue
             new_items_html = self._build_wiki_nav_items(soup, path)
-            new_ul = BeautifulSoup(
-                f'<ul class="wiki-nav">\n                    {new_items_html}\n                </ul>',
-                "html.parser",
-            ).ul
-            nav_ul.replace_with(new_ul)
+            new_ul_html = (
+                '<ul class="wiki-nav">\n'
+                + new_items_html
+                + '\n</ul>'
+            )
+            new_content = _re.sub(
+                r'<ul class="wiki-nav">.*?</ul>',
+                new_ul_html,
+                content,
+                flags=_re.DOTALL,
+            )
+            if new_content == content:
+                print(f'[WikiUpdater] No changes needed in: {path}')
+                continue
             with open(path, "w", encoding="utf-8") as f:
-                f.write(str(page_soup))
+                f.write(new_content)
             print(f'[WikiUpdater] Updated wiki nav in: {path}')
 
     def _build_wiki_nav_items(self, soup, current_filename: str) -> str:
