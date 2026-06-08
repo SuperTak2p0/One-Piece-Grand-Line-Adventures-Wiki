@@ -189,6 +189,10 @@
         }
         .wiki-nav a:hover { color: #c8960c; }
         .wiki-nav a.active { color: #c8960c; font-weight: 700; }
+        .wiki-nav a.wiki-nav-sub {
+            padding-left: 1rem;
+            font-size: 0.8rem;
+        }
         .wiki-tag-soon {
             font-size: 0.65rem;
             background: rgba(139,100,20,0.2);
@@ -239,6 +243,57 @@
         footer a { color: #8b949e; text-decoration: none; }
         footer a:hover { color: #c8960c; }
 
+        /* Attack cards */
+        .attack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 1rem;
+            margin-top: 0.75rem;
+        }
+        .attack-card {
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .attack-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #e6edf3;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .attack-card p {
+            font-size: 0.85rem;
+            color: #8b949e;
+            line-height: 1.6;
+            flex: 1;
+        }
+        .attack-released-tag {
+            font-size: 0.62rem;
+            font-weight: 700;
+            background: rgba(35,134,54,0.2);
+            border: 1px solid rgba(46,160,67,0.4);
+            color: #2ea043;
+            padding: 0.1rem 0.45rem;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .attack-link {
+            font-size: 0.82rem;
+            color: #c8960c;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 0.2rem;
+        }
+        .attack-link:hover { color: #f0c040; }
+
         @media (max-width: 720px) {
             .page-layout { grid-template-columns: 1fr; }
             .hero h1 { font-size: 1.8rem; }
@@ -280,6 +335,21 @@
                 <p>
                     Currently, only the Attack Selection GUI is implemented. There are only two abilities available: <b>Basic Punch</b> (test) and <b>Galaxy Impact</b> (prototype). In the devil fruit update many more abilities will be added. The attacks will be added faster and easier, because the basic system is already in place.
                 </p>
+            </div>
+            <div class="content-box">
+                <h2>Attacks</h2>
+                <div class="attack-grid">
+                    <div class="attack-card">
+                        <h3>Basic Punch <span class="attack-released-tag">Released</span></h3>
+                        <p>A basic melee attack available to all players. The foundation of the combat system.</p>
+                        <a class="attack-link" href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/basic-punch.html">Read more</a>
+                    </div>
+                    <div class="attack-card">
+                        <h3>Galaxy Impact <span class="attack-released-tag">Released</span></h3>
+                        <p>A prototype long-range energy attack with devastating impact on enemies.</p>
+                        <a class="attack-link" href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/galaxy-impact.html">Read more</a>
+                    </div>
+                </div>
             </div>
             <div class="content-box">
                 <h2>More details coming soon</h2>
@@ -324,6 +394,8 @@
                     <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/factions.html">Factions</a></li>
                     <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/races.html">Races</a></li>
                     <li><a href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/combat-abilities.html" class="active">Combat Abilities</a></li>
+                    <li><a class="wiki-nav-sub" href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/basic-punch.html">&#8627; Basic Punch</a></li>
+                    <li><a class="wiki-nav-sub" href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/galaxy-impact.html">&#8627; Galaxy Impact</a></li>
                 </ul>
             </div>
         </aside>
