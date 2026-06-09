@@ -290,10 +290,7 @@
             border-bottom: 2px solid #c8960c;
         }
         .video-wrap {
-            position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #000;
             border-radius: 8px;
             overflow: hidden;
             border: 2px solid rgba(200,150,12,0.45);
@@ -301,13 +298,6 @@
                 0 0 0 1px rgba(200,150,12,0.1),
                 0 0 30px rgba(200,150,12,0.12),
                 0 4px 24px rgba(0,0,0,0.7);
-        }
-        .video-wrap video {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: contain;
-            background: #000;
         }
         .video-meta {
             display: flex;
@@ -371,12 +361,7 @@
             <div class="video-showcase">
                 <h2>Gameplay Recording</h2>
                 <div class="video-wrap">
-                    <video controls preload="metadata">
-                        <!-- Add your screen recording here: replace src="" with your video file path or URL -->
-                        <source src="https://streamable.com/h4s2zb" type="video/mp4">
-                        <!-- Example: <source src="videos/galaxy-impact.mp4" type="video/mp4"> -->
-                        Your browser does not support the video tag.
-                    </video>
+                    <div style="position:relative; width:100%; height:0px; padding-bottom:51.719%"><iframe allow="fullscreen" allowfullscreen height="100%" src="https://streamable.com/e/h4s2zb?" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe></div>
                 </div>
                 <div class="video-meta">
                     <span class="video-caption">Galaxy Impact — in-game prototype footage</span>
