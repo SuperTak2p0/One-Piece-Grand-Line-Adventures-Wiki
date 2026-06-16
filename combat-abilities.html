@@ -294,6 +294,47 @@
         }
         .attack-link:hover { color: #f0c040; }
 
+        /* Keybind table */
+        .stat-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            margin-top: 0.75rem;
+        }
+        .stat-table th {
+            text-align: left;
+            color: #c8960c;
+            font-weight: 700;
+            padding: 0.4rem 0.6rem;
+            border-bottom: 1px solid #21262d;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .stat-table td {
+            padding: 0.45rem 0.6rem;
+            color: #8b949e;
+            border-bottom: 1px solid #161b22;
+        }
+        .stat-table td:first-child {
+            color: #e6edf3;
+            font-weight: 600;
+        }
+        .stat-table tr:last-child td { border-bottom: none; }
+        .keybind {
+            display: inline-block;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-bottom: 3px solid #30363d;
+            border-radius: 5px;
+            padding: 0.1rem 0.55rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e6edf3;
+            letter-spacing: 0.05em;
+        }
+
         @media (max-width: 720px) {
             .page-layout { grid-template-columns: 1fr; }
             .hero h1 { font-size: 1.8rem; }
@@ -350,6 +391,30 @@
                         <a class="attack-link" href="https://supertak2p0.github.io/One-Piece-Grand-Line-Adventures-Wiki/galaxy-impact.html">Read more</a>
                     </div>
                 </div>
+            </div>
+            <div class = "content-box">
+                <h2>Can to use the attacks</h2>
+                <p>
+                    Press R to open the Attack Selection GUI. There you will see allk attacks which you have unlocked and can use. Left next to the attack name is the a Slotbutton. You can click on the slotbutton next to the attack name to assign the attack to a slot. Each slot has a keybind. You can check the keybind in the table below.
+                </p>
+                <table class="stat-table">
+                    <thead>
+                        <tr>
+                            <th>Slot</th>
+                            <th>Keybind</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Slot 1</td>
+                            <td><span class="keybind">G</span></td>
+                        </tr>
+                        <tr>
+                            <td>Slot 2</td>
+                            <td><span class="keybind">F</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="content-box">
                 <h2>More details coming soon</h2>
