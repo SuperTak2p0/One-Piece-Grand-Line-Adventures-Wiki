@@ -392,6 +392,75 @@
         }
         .roadmap-table tr:hover td { background: rgba(255,255,255,0.02); }
 
+        /* Feedback */
+        .feedback-box {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .feedback-box p {
+            font-size: 0.88rem;
+            color: #8b949e;
+            line-height: 1.6;
+            margin-bottom: 1.1rem;
+        }
+        .feedback-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            margin-bottom: 0.9rem;
+        }
+        .feedback-field label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: #c8960c;
+        }
+        .feedback-field input,
+        .feedback-field textarea {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 0.55rem 0.75rem;
+            color: #e6edf3;
+            font-family: inherit;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .feedback-field input:focus,
+        .feedback-field textarea:focus {
+            border-color: #c8960c;
+        }
+        .feedback-field textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+        .feedback-submit {
+            display: inline-block;
+            background: linear-gradient(135deg, #c8960c, #a07008);
+            color: #000;
+            font-weight: 800;
+            font-size: 0.88rem;
+            padding: 0.6rem 1.6rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+        .feedback-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+        .feedback-note {
+            font-size: 0.75rem;
+            color: #484f58;
+            margin-top: 0.6rem;
+        }
+
         .coming-soon-tag {
             display: inline-block;
             background: rgba(139, 100, 20, 0.2);
@@ -958,6 +1027,29 @@
   </table>
 </div>
 
+</section>
+
+<section>
+<h2 class="section-title">Feedback</h2>
+<div class="feedback-box">
+    <p>Got a suggestion, bug report, or idea for the mod or wiki? Send it directly — every message is read.</p>
+    <form action="mailto:akshattak2607@gmail.com" method="post" enctype="text/plain">
+        <div class="feedback-field">
+            <label for="fb-name">Name <span style="font-weight:400;color:#484f58;">(optional)</span></label>
+            <input type="text" id="fb-name" name="Name" placeholder="Your name">
+        </div>
+        <div class="feedback-field">
+            <label for="fb-subject">Subject</label>
+            <input type="text" id="fb-subject" name="Subject" placeholder="e.g. Bug report, Suggestion, Question" required>
+        </div>
+        <div class="feedback-field">
+            <label for="fb-message">Message</label>
+            <textarea id="fb-message" name="Message" placeholder="Write your feedback here..." required></textarea>
+        </div>
+        <button type="submit" class="feedback-submit">Send Feedback</button>
+        <p class="feedback-note">Opens your email client to send to akshattak2607@gmail.com</p>
+    </form>
+</div>
 </section></main>
 <!-- Sidebar -->
 <aside id="links">
