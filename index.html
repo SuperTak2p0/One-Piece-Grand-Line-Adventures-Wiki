@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -1027,30 +1028,70 @@
     </tbody>
   </table>
 </div>
-
+    
 </section>
 
 <section id="feedback">
 <h2 class="section-title">Feedback</h2>
 <div class="feedback-box">
-    <p>Got a suggestion, bug report, or idea for the mod or wiki? Send it directly — every message is read.</p>
-    <form action="mailto:akshattak2607@gmail.com" method="post" enctype="text/plain">
+    <p>Got a suggestion, bug report, or idea for the mod or wiki? Send it directly — every message is read. The mod is currently in early beta so your suggestions can be implemented.</p>
+    <div id="fb-success" style="display:none;background:#1a2e1a;border:1px solid #3fb950;border-radius:8px;padding:1rem 1.25rem;color:#3fb950;font-weight:600;margin-bottom:1rem;">
+        Feedback sent! Thank you — every message is read.
+    </div>
+    <div id="fb-error" style="display:none;background:#2e1a1a;border:1px solid #f85149;border-radius:8px;padding:1rem 1.25rem;color:#f85149;font-weight:600;margin-bottom:1rem;">
+        Something went wrong. Please try again.
+    </div>
+    <form id="feedback-form">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+        <input type="hidden" name="subject" value="Grand Line Adventures Wiki Feedback">
+        <input type="hidden" name="from_name" value="Wiki Feedback">
         <div class="feedback-field">
             <label for="fb-name">Name <span style="font-weight:400;color:#484f58;">(optional)</span></label>
-            <input type="text" id="fb-name" name="Name" placeholder="Your name">
+            <input type="text" id="fb-name" name="name" placeholder="Your name">
         </div>
         <div class="feedback-field">
             <label for="fb-subject">Subject</label>
-            <input type="text" id="fb-subject" name="Subject" placeholder="e.g. Bug report, Suggestion, Question" required>
+            <input type="text" id="fb-subject" name="topic" placeholder="e.g. Bug report, Suggestion, Question" required>
         </div>
         <div class="feedback-field">
             <label for="fb-message">Message</label>
-            <textarea id="fb-message" name="Message" placeholder="Write your feedback here..." required></textarea>
+            <textarea id="fb-message" name="message" placeholder="Write your feedback here..." required></textarea>
         </div>
-        <button type="submit" class="feedback-submit">Send Feedback</button>
-        <p class="feedback-note">Opens your email client to send to akshattak2607@gmail.com</p>
+        <button type="submit" class="feedback-submit" id="fb-btn">Send Feedback</button>
     </form>
 </div>
+<script>
+document.getElementById('feedback-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('fb-btn');
+    const successEl = document.getElementById('fb-success');
+    const errorEl = document.getElementById('fb-error');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    successEl.style.display = 'none';
+    errorEl.style.display = 'none';
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        if (result.success) {
+            successEl.style.display = 'block';
+            this.reset();
+        } else {
+            errorEl.style.display = 'block';
+        }
+    } catch(err) {
+        errorEl.style.display = 'block';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Send Feedback';
+});
+</script>
 </section></main>
 <!-- Sidebar -->
 <aside id="links">
