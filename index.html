@@ -1065,35 +1065,38 @@
     </form>
 </div>
 <script>
-document.getElementById('feedback-form').addEventListener('submit', async function(e) {
+const feedbackForm = document.getElementById('feedback-form');
+const feedbackBtn = feedbackForm.querySelector('button[type="submit"]');
+
+feedbackForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = document.getElementById('fb-btn');
     const successEl = document.getElementById('fb-success');
     const errorEl = document.getElementById('fb-error');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
     successEl.style.display = 'none';
     errorEl.style.display = 'none';
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
+    const originalText = feedbackBtn.textContent;
+    feedbackBtn.textContent = 'Sending...';
+    feedbackBtn.disabled = true;
+    const formData = new FormData(feedbackForm);
     try {
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data)
+            body: formData
         });
-        const result = await res.json();
-        if (result.success) {
+        const data = await response.json();
+        if (response.ok) {
             successEl.style.display = 'block';
-            this.reset();
+            feedbackForm.reset();
         } else {
+            errorEl.textContent = 'Error: ' + (data.message || 'Please try again.');
             errorEl.style.display = 'block';
         }
-    } catch(err) {
+    } catch (error) {
         errorEl.style.display = 'block';
+    } finally {
+        feedbackBtn.textContent = originalText;
+        feedbackBtn.disabled = false;
     }
-    btn.disabled = false;
-    btn.textContent = 'Send Feedback';
 });
 </script>
 </section></main>
