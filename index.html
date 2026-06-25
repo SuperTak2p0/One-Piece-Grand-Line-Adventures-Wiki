@@ -727,6 +727,35 @@
             nav {
                 display: none;
             }
+
+            /* Roadmap: tabelle scrollt horizontal, streckt NICHT die Seite */
+            .roadmap-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                font-size: 0.78rem;
+            }
+            .roadmap-table th,
+            .roadmap-table td {
+                padding: 0.4rem 0.65rem;
+            }
+            .roadmap-table td:first-child,
+            .roadmap-table td:nth-child(2) {
+                white-space: nowrap;
+            }
+            .roadmap-table td:last-child {
+                white-space: normal;
+                min-width: 160px;
+            }
+            .roadmap-header {
+                padding: 0.7rem 0.9rem;
+            }
+            .roadmap-goal {
+                font-size: 0.75rem;
+            }
+            .roadmap-title {
+                font-size: 0.88rem;
+            }
         }
     </style>
 </head>
