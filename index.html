@@ -310,6 +310,88 @@
             line-height: 1.5;
         }
 
+        /* Update Roadmap */
+        .roadmap-section { margin-bottom: 2rem; }
+        .roadmap-block {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+        }
+        .roadmap-header {
+            padding: 0.9rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            border-left: 4px solid var(--accent);
+        }
+        .roadmap-header-top {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .roadmap-num {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            background: rgba(var(--accent-rgb), 0.12);
+            border: 1px solid rgba(var(--accent-rgb), 0.3);
+            padding: 0.15rem 0.55rem;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+        .roadmap-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #e6edf3;
+        }
+        .roadmap-goal {
+            font-size: 0.8rem;
+            color: #8b949e;
+            line-height: 1.5;
+            padding-left: 0.1rem;
+        }
+        .roadmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .roadmap-table thead tr {
+            background: rgba(var(--accent-rgb), 0.07);
+            border-top: 1px solid #21262d;
+        }
+        .roadmap-table th {
+            text-align: left;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--accent);
+        }
+        .roadmap-table td {
+            padding: 0.55rem 1.25rem;
+            border-top: 1px solid #21262d;
+            color: #8b949e;
+            vertical-align: top;
+            line-height: 1.5;
+        }
+        .roadmap-table td:first-child {
+            color: #e6edf3;
+            font-weight: 700;
+            white-space: nowrap;
+            font-size: 0.82rem;
+        }
+        .roadmap-table td:nth-child(2) {
+            color: #c9d1d9;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .roadmap-table tr:hover td { background: rgba(255,255,255,0.02); }
+
         .coming-soon-tag {
             display: inline-block;
             background: rgba(139, 100, 20, 0.2);
@@ -766,6 +848,90 @@
 </div>
 </div>
 </section>
+</section>
+
+<section class="roadmap-section">
+<h2 class="section-title">Update Roadmap</h2>
+
+<!-- Update 1 -->
+<div class="roadmap-block" style="--accent:#c8960c; --accent-rgb:200,150,12;">
+  <div class="roadmap-header">
+    <div class="roadmap-header-top">
+      <span class="roadmap-num">Update 1</span>
+      <span class="roadmap-title">Beginning of the Journey</span>
+    </div>
+    <div class="roadmap-goal">Goal: The foundation of the mod – character creation, fighting styles, and Devil Fruits.</div>
+  </div>
+  <table class="roadmap-table">
+    <thead><tr><th>Update</th><th>Topic</th><th>Content / Goal</th></tr></thead>
+    <tbody>
+      <tr><td>1.1</td><td>Character Selection &amp; Core System</td><td>Choose and save race, faction, and fighting style. GUI on first login.</td></tr>
+      <tr><td>1.2</td><td>Fighting Styles &amp; Abilities</td><td>Attacks via key bindings (R, F, G), with cooldowns and particles.</td></tr>
+      <tr><td>1.3</td><td>Devil Fruits &amp; Weaknesses</td><td>Fruit abilities, effects, water weakness, loot in chests.</td></tr>
+      <tr><td>1.4</td><td>Haki System (Basic)</td><td>First Haki system (Busoshoku + Kenbunshoku). Training and stamina.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Update 2 -->
+<div class="roadmap-block" style="--accent:#58a6ff; --accent-rgb:88,166,255;">
+  <div class="roadmap-header">
+    <div class="roadmap-header-top">
+      <span class="roadmap-num">Update 2</span>
+      <span class="roadmap-title">Crew &amp; World</span>
+    </div>
+    <div class="roadmap-goal">Goal: A living world with interactions, crew, reputation system, and trading.</div>
+  </div>
+  <table class="roadmap-table">
+    <thead><tr><th>Update</th><th>Topic</th><th>Content / Goal</th></tr></thead>
+    <tbody>
+      <tr><td>2.0</td><td>Crew, NPCs &amp; Trainers</td><td>NPCs with dialogues, training system, crew recruitment.</td></tr>
+      <tr><td>2.1</td><td>Factions &amp; Reputation System</td><td>Reputation points, wanted posters, Marines vs. Pirates.</td></tr>
+      <tr><td>2.2</td><td>Economy &amp; Trading</td><td>Berries as currency. Traders exchange One Piece items.</td></tr>
+      <tr><td>2.3</td><td>Islands &amp; Kingdoms (Basic)</td><td>Island generation with villages &amp; traders.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Update 3 -->
+<div class="roadmap-block" style="--accent:#3fb950; --accent-rgb:63,185,80;">
+  <div class="roadmap-header">
+    <div class="roadmap-header-top">
+      <span class="roadmap-num">Update 3</span>
+      <span class="roadmap-title">Grand Line</span>
+    </div>
+    <div class="roadmap-goal">Goal: The complete One Piece world with navigation, Blues, Red Line &amp; Log Ports.</div>
+  </div>
+  <table class="roadmap-table">
+    <thead><tr><th>Update</th><th>Topic</th><th>Content / Goal</th></tr></thead>
+    <tbody>
+      <tr><td>3.0</td><td>Grand Line, Red Line &amp; 4 Blues</td><td>World structure with biomes and route system.</td></tr>
+      <tr><td>3.1</td><td>Fish-Man Island &amp; Sky Islands</td><td>Vertical world generation – underwater &amp; sky islands.</td></tr>
+      <tr><td>3.2</td><td>Dials &amp; Special Items</td><td>Dials, Seastone, energy system.</td></tr>
+      <tr><td>3.3</td><td>Ships &amp; Travel</td><td>Custom ships with controls and crew positions.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Update 4 -->
+<div class="roadmap-block" style="--accent:#f85149; --accent-rgb:248,81,73;">
+  <div class="roadmap-header">
+    <div class="roadmap-header-top">
+      <span class="roadmap-num">Update 4</span>
+      <span class="roadmap-title">The Age of Pirates</span>
+    </div>
+    <div class="roadmap-goal">Goal: One Piece finale, story quests, world wars, endgame systems.</div>
+  </div>
+  <table class="roadmap-table">
+    <thead><tr><th>Update</th><th>Topic</th><th>Content / Goal</th></tr></thead>
+    <tbody>
+      <tr><td>4.0</td><td>Marines, World Government &amp; Events</td><td>Global attacks, Marine ships, Revolutionary actions.</td></tr>
+      <tr><td>4.1</td><td>Story &amp; One Piece Finale</td><td>Poneglyph system, final island, legendary treasure.</td></tr>
+      <tr><td>4.2</td><td>End Phase – World History</td><td>Cutscenes, credits, world changes after victory.</td></tr>
+    </tbody>
+  </table>
+</div>
+
 </section></main>
 <!-- Sidebar -->
 <aside id="links">
